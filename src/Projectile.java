@@ -3,10 +3,13 @@ public class Projectile {
     int yPos;
     int velocity;
     
+
     public Projectile(PowerType pt) {
     
     }
     
+
+    //Setters for the class
     public void setXPos(int xPos) {
       this.xPos = xPos;
     }
@@ -16,6 +19,8 @@ public class Projectile {
     public void setVelocity(int velocity) {
       this.velocity = velocity;
     }
+    //getters for the class
+
     public Integer getXPos() {
       return this.xPos;
     }
