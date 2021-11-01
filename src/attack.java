@@ -2,16 +2,19 @@ public Class Boss {
   int health;
   int damage;
   
-  public enum attack {attackOne, attackTwo, attackThree}
+  public enum attack {attackOne, attackTwo, attackThree, attack}
   attack attackType;
+  
+private int damage;
+private int health;
     
-  public AttackOne(attack attackType) {
+  public void AttackOne(attack attackType) {
       this.attackType = attack;
     } 
-  public AttackTwo(attack attackType) {
+  public void AttackTwo(attack attackType) {
       this.attackType = attack;
     }
-  public AttackThree(attack attackType) {
+  public void AttackThree(attack attackType) {
       this.attackType = attack;
     }
     
@@ -23,7 +26,7 @@ public Class Boss {
       return health;
     } 
     
-  public dealDamage(int damage) {
+  public void dealDamage(int damage) {
       this.damage = damage;
     }
 
