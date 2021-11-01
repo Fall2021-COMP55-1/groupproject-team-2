@@ -1,4 +1,4 @@
-public Class Boss {
+public class Boss {
   int health;
   int damage;
   
