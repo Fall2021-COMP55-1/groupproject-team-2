@@ -1,12 +1,14 @@
+import acm.graphics.GImage; 
+
 public class PowerShot extends Projectile {
-public GImage();
+	private GImage av;
 
   public void draw() {
     
   }
 }
 public class MultipleShot extends Projectile {
-  public GImage();
+	private GImage av;
   int numShots;
   
   public void increaseShots() {
@@ -17,7 +19,7 @@ public class MultipleShot extends Projectile {
   }
 }
 public class AlienShot extends Projectile {
-  public GImage();
+	private GImage av;
   public void draw() {
   
   }

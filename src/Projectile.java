@@ -3,6 +3,10 @@ public class Projectile {
     int yPos;
     int velocity;
     
+    public Projectile(PowerType pt) {
+    
+    }
+    
     public void setXPos(int xPos) {
       this.xPos = xPos;
     }

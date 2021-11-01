@@ -1,9 +1,10 @@
 import java.util.*;
 import PowerType.java;
 
+
 public class Player {
     
-    private int username;
+    private String username;
     private long score;
     private int health;
     private int velocity;
@@ -40,11 +41,11 @@ public class Player {
 
     }
 
-    public int getUsername() {
+    public String getUsername() {
         return this.username;
     }
 
-    public void setUsername(int username) {
+    public void setUsername(String username) {
         this.username = username;
     }
 
