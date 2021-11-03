@@ -11,7 +11,7 @@ public class MultipleShot extends Projectile {
   public void increaseShots() {
   
   }
-  public void draw(numShots) {
+  public void draw(int numShots) {
   
   }
 }
