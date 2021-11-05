@@ -68,7 +68,7 @@ public class Player {
         return this.velocity;
     }
 
-    private void setVelocity(int velocity) {
+    public void setVelocity(int velocity) {
         this.velocity = velocity;
     }
 

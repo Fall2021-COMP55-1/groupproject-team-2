@@ -12,8 +12,12 @@
 
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+
+import acm.graphics.GImage;
 
 public abstract class GraphicsPane implements Interfaceable {
+	
 	
 	@Override
 	public abstract void showContents();
