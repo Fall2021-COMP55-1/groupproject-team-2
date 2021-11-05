@@ -1,5 +1,4 @@
 import java.util.*;
-import PowerType.java;
 
 
 public class Player {

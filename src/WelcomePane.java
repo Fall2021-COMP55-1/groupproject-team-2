@@ -4,35 +4,42 @@ import java.awt.event.MouseEvent;
 import acm.graphics.GImage;
 import acm.graphics.GObject;
 
-public class MenuPane extends GraphicsPane {
+public class WelcomePane extends GraphicsPane {
 	
 	// you will use program to get access to all of the GraphicsProgram calls
 	private MainApplication program; 
 							
 	private GImage background;
+	private GImage title;
 
 
-	public MenuPane(MainApplication app) {
+	public WelcomePane(MainApplication app) {
 		super();
-		background = new GImage("cloud.gif", 0,0);
+		
+		String filename = "src/Images/cloud.gif";
+		background = new GImage(filename, 0,0);
 		program = app;
+		title = new GImage("src/Images/title.png", program.getWidth()/2 - 233, program.getHeight()/5-(150/5));
+		title.sendToFront();
 
 	}
 
 	@Override
 	public void showContents() {
 		program.add(background);
+		program.add(title);
 	}
 
 	@Override
 	public void hideContents() {
 		program.remove(background);
+		program.remove(title);
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
 		GObject obj = program.getElementAt(e.getX(), e.getY());
-		if (obj == background) {
+		if (obj == title) {
 			program.switchToSome();
 		}
 	}
