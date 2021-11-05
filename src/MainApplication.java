@@ -10,7 +10,7 @@ public class MainApplication extends GraphicsProgram {
 
 	private GraphicsPane curScreen;
 	private SomePane somePane;
-	private MenuPane menu;
+	private WelcomePane welcome;
 	
 	/* Method: setupInteractions
 	 * -------------------------
@@ -101,13 +101,13 @@ public class MainApplication extends GraphicsProgram {
 	public void run() {
 		System.out.println("Let's make something awesome!");
 		somePane = new SomePane(this);
-		menu = new MenuPane(this);
+		welcome = new WelcomePane(this);
 		setupInteractions();
 		switchToMenu();
 	}
 
 	public void switchToMenu() {
-		switchToScreen(menu);
+		switchToScreen(welcome);
 	}
 
 	public void switchToSome() {
