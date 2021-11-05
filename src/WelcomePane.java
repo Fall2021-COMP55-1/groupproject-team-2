@@ -11,7 +11,7 @@ public class WelcomePane extends GraphicsPane {
 							
 	private GImage background;
 	private GImage title;
-
+	private GImage button;
 
 	public WelcomePane(MainApplication app) {
 		super();
@@ -21,6 +21,8 @@ public class WelcomePane extends GraphicsPane {
 		program = app;
 		title = new GImage("src/Images/title.png", program.getWidth()/2 - 233, program.getHeight()/5-(150/5));
 		title.sendToFront();
+		button = new GImage("src/Images/continue button.png", program.getWidth()/2-50, program.getHeight()*4/5);
+		button.sendToFront();
 
 	}
 
@@ -28,18 +30,20 @@ public class WelcomePane extends GraphicsPane {
 	public void showContents() {
 		program.add(background);
 		program.add(title);
+		program.add(button);
 	}
 
 	@Override
 	public void hideContents() {
 		program.remove(background);
 		program.remove(title);
+		program.remove(button);
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
 		GObject obj = program.getElementAt(e.getX(), e.getY());
-		if (obj == title) {
+		if (obj == button) {
 			program.switchToSome();
 		}
 	}
