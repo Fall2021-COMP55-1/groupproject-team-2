@@ -11,7 +11,6 @@ import acm.graphics.GLine;
 import acm.graphics.GObject;
 
 public class LevelFour extends GraphicsPane {
-	//d
 	private MainApplication program; 
 							
 	private GImage background;
@@ -22,7 +21,7 @@ public class LevelFour extends GraphicsPane {
 	private GLine textline;
 	private String username;
 
-	public MenuPane(MainApplication app) {
+	public LevelFour(MainApplication app) {
 		super();
 		
 		String filename = "src/Images/cloud.gif";
