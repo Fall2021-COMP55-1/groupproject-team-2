@@ -1,5 +1,8 @@
 import java.awt.Color;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
+
+import javax.swing.Timer;
 
 import acm.graphics.GImage;
 import acm.graphics.GObject;
@@ -12,16 +15,16 @@ public class WelcomePane extends GraphicsPane {
 	private GImage background;
 	private GImage title;
 	private GImage button;
-
+	
 	public WelcomePane(MainApplication app) {
 		super();
-		
+
 		String filename = "src/Images/cloud.gif";
 		background = new GImage(filename, 0,0);
 		program = app;
 		title = new GImage("src/Images/title.png", program.getWidth()/2 - 233, program.getHeight()/5-(150/5));
 		title.sendToFront();
-		button = new GImage("src/Images/continue button.png", program.getWidth()/2-50, program.getHeight()*4/5);
+		button = new GImage("src/Images/continue button.png", program.getWidth()/2-59, program.getHeight()*4/5);
 		button.sendToFront();
 
 	}
@@ -31,6 +34,7 @@ public class WelcomePane extends GraphicsPane {
 		program.add(background);
 		program.add(title);
 		program.add(button);
+		
 	}
 
 	@Override
@@ -44,7 +48,7 @@ public class WelcomePane extends GraphicsPane {
 	public void mousePressed(MouseEvent e) {
 		GObject obj = program.getElementAt(e.getX(), e.getY());
 		if (obj == button) {
-			program.switchToSome();
+			program.switchToMenu();
 		}
 	}
 }
