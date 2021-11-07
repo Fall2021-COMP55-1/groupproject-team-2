@@ -22,6 +22,7 @@ public class LevelFive extends GraphicsPane {
 	private GLabel text;
 	private GLine textline;
 	private String username;
+	private Player player;
 
 	public LevelFive(MainApplication app) {
 		super();
@@ -36,7 +37,8 @@ public class LevelFive extends GraphicsPane {
 		textbox = new GRect(800/2-150/2, 600*2/3-50, 150,37);
 		textbox.sendToFront();
 		username = "";
-
+		player = new Player(username);
+		
 	}
 
 	@Override

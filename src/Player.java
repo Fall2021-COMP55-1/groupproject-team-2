@@ -1,5 +1,7 @@
 import java.util.*;
 
+import acm.graphics.GImage;
+
 
 public class Player {
     
@@ -11,6 +13,7 @@ public class Player {
     private int lives;
     private int x;
     private int y;
+    private GImage player;
 
     public Player(String un){
         username = un;
@@ -36,8 +39,9 @@ public class Player {
         this.y += y;
     }
 
-    void drawPlayer(){
-
+    void drawPlayer(int x, int y){
+    	player = new GImage("src/Bullets/Player-Android.png", x/2, y/2);
+    	add(player);
     }
 
     public String getUsername() {
