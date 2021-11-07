@@ -11,7 +11,7 @@ import acm.graphics.GLine;
 import acm.graphics.GObject;
 
 public class LevelOne extends GraphicsPane {
-	//d
+	//
 	private MainApplication program; 
 							
 	private GImage background;

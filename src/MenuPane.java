@@ -61,7 +61,7 @@ public class MenuPane extends GraphicsPane {
 			program.switchToSome();
 		}
 		if(obj == textbox) {
-			text = new GLabel(username, 800/2-150/2, 600*2/3-50);
+			text = new GLabel(username, 810/2-150/2, 635*2/3-50);
 			text.setFont("Courier");
 			text.sendToFront();
 			program.add(text);
