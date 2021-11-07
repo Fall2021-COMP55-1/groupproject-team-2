@@ -8,16 +8,18 @@ public class LevelOne {
 	void loadEnemies() {
 		
 		
+		
 	}
 	
 	boolean isPassed() {
 		return passed;
 		
+		
 	}
 	
 	void drawLevel() {
+	
 		
-		
-	}
+	}	
 	
 }
