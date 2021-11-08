@@ -12,6 +12,7 @@ public class MainApplication extends GraphicsProgram {
 	private SomePane somePane;
 	private WelcomePane welcome;
 	private MenuPane menu;
+	private Settings settings;
 	
 	/* Method: setupInteractions
 	 * -------------------------
@@ -122,5 +123,9 @@ public class MainApplication extends GraphicsProgram {
 
 	public static void main(String[] args) {
 		new MainApplication().start();
+	}
+
+	public void switchToSettings() {
+		switchToScreen(settings);	
 	}
 }

@@ -38,8 +38,7 @@ public class Player {
     }
 
     void move(int x, int y){
-        this.x += x;
-        this.y += y;
+        player.move(x*velocity, y*velocity);
     }
 
     void drawPlayer(int x, int y){
