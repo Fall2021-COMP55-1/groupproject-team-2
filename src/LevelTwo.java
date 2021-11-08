@@ -21,16 +21,17 @@ public class LevelTwo extends GraphicsPane {
 
 	public LevelTwo(MainApplication app, String player_name) {
 		super();
-
+		program = app;
 		username = player_name;
 		player = new Player(username, app);
-		settings = new GImage("src/Images/settings gear.png", 700,50);
+		settings = new GImage("src/Images/settings gears.png", 700,50);
 		
 	}
 
 	@Override
 	public void showContents() {
 		player.drawPlayer(800, 600);
+		program.add(settings);
 	}
 
 	@Override
