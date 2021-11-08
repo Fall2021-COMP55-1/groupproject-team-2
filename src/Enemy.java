@@ -1,3 +1,4 @@
+import acm.graphics.GImage;
 
 public class Enemy {
 	private int xPos;
