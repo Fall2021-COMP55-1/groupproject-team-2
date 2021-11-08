@@ -30,7 +30,7 @@ public class MainGame extends GraphicsPane {
 		enemies = new ArrayList <Enemy>();
 		bullets = new ArrayList <Projectile>();
 		playerSprite = new GImage("/COMP55GroupProject/src/Bullets/Android Logo.png", 300, 300);
-		player = new Player("test");
+		player = new Player("test", program);
 		player.setVelocity(4);
 		while(!gameOver){
 			if(System.nanoTime() - lastTick > tickTime) {
