@@ -14,63 +14,36 @@ public class LevelFive extends GraphicsPane {
 	
 	// you will use program to get access to all of the GraphicsProgram calls
 	private MainApplication program; 
-							
-	private GImage background;
-	private GImage title;
-	private GImage button;
-	private GRect textbox;
-	private GLabel text;
-	private GLine textline;
+
 	private String username;
 	private Player player;
+	private GImage settings;
 
-	public LevelFive(MainApplication app) {
+	public LevelFive(MainApplication app, String player_name) {
 		super();
-		
-		String filename = "src/Images/cloud.gif";
-		background = new GImage(filename, 0,0);
-		program = app;
-		title = new GImage("src/Images/title.png", program.getWidth()/2 - 233, program.getHeight()/5-(150/5));
-		title.sendToFront();
-		button = new GImage("src/Images/continue button.png", program.getWidth()/2-59, program.getHeight()*4/5);
-		button.sendToFront();
-		textbox = new GRect(800/2-150/2, 600*2/3-50, 150,37);
-		textbox.sendToFront();
-		username = "";
-		player = new Player(username);
-		
+
+		username = player_name;
+		player = new Player(username, app);
+		settings = new GImage("src/Images/settings gear.png", 700,50);
 	}
 
 	@Override
 	public void showContents() {
-		program.add(background);
-		program.add(title);
-		program.add(button);
-		program.add(textbox);
+		player.drawPlayer(800, 600);
 	}
 
 	@Override
 	public void hideContents() {
-		program.remove(background);
-		program.remove(title);
-		program.remove(button);
+		player.removePlayer();
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
 		GObject obj = program.getElementAt(e.getX(), e.getY());
-		if (obj == button) {
+		if (obj == settings) {
 			program.switchToSome();
 		}
-		if(obj == textbox) {
-			text = new GLabel(username, 800/2-150/2, 600*2/3-50);
-			text.setFont("Courier");
-			text.sendToFront();
-			program.add(text);
-			textline = new GLine(800/2-150/2, 600*2/3-50, 800/2-150/2, 600*2/3-50+37);
-			textline.sendToFront();
-			program.add(textline);
-		}
+
 	}
 	
 	public void actionPerformed(ActionEvent e) {
