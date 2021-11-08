@@ -4,6 +4,8 @@ import acm.graphics.GImage;
 
 
 public class Player {
+	
+	private MainApplication program;
     
     private String username;
     private long score;
@@ -15,7 +17,8 @@ public class Player {
     private int y;
     private GImage player;
 
-    public Player(String un){
+    public Player(String un, MainApplication ma){
+    	program = ma;
         username = un;
         score = 0;
         health = 100;
@@ -41,7 +44,7 @@ public class Player {
 
     void drawPlayer(int x, int y){
     	player = new GImage("src/Bullets/Player-Android.png", x/2, y/2);
-    	add(player);
+    	program.add(player);
     }
 
     public String getUsername() {
@@ -111,4 +114,9 @@ public class Player {
     void increaseUserSpeed(){
         setVelocity(velocity+10);
     }
+
+	public void removePlayer() {
+		program.remove(player);
+		
+	}
 }
