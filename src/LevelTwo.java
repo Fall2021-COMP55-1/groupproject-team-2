@@ -74,19 +74,20 @@ public class LevelTwo extends GraphicsPane {
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		
+		GObject obj = program.getElementAt(e.getX(), e.getY());
+		if (obj == settings) {
+			program.switchToSettings();
+		}
 	}	
 	
 	public void keyPressed(KeyEvent e) {
-		if(e.getKeyChar() != KeyEvent.VK_BACK_SPACE) {
-			username+= e.getKeyChar();
-			text.setLabel(username);
-		} else
-			if(username.length() > 1) {
-				username = username.substring(0,username.length()-2);
-				text.setLabel(username);
-			} else
-				username = "";
-				text.setLabel(username);
+		if(e.getKeyChar() == KeyEvent.VK_LEFT)
+			player.move(-1, 0);
+		if(e.getKeyChar() == KeyEvent.VK_RIGHT)
+			player.move(0, 0);
+		if(e.getKeyChar() == KeyEvent.VK_UP)
+			player.move(0, 1);
+		if(e.getKeyChar() == KeyEvent.VK_DOWN)
+			player.move(0, -1);
 	}
 }

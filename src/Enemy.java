@@ -3,8 +3,19 @@ public class Enemy {
 	private int xPos;
 	private int yPos;
 	private int health;
+	private MainApplication program;
+	private GImage enemy;
 	
+	public Enemy(int x, int y, MainApplication ma){
+	    program = ma;
+	    health = 20;
+	        
+	}
 	
+	public void draw(int x, int y) {
+		enemy = new GImage("", x, y);
+		program.add(enemy);
+	}
 	
 	public void attack() {
 		
