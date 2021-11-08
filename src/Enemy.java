@@ -1,8 +1,8 @@
 
 public class Enemy {
-	int xPos;
-	int yPos;
-	private int health,x,y;
+	private int xPos;
+	private int yPos;
+	private int health;
 	
 	
 	
