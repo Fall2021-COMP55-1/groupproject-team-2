@@ -10,8 +10,10 @@
 /Images/
 /Interfaceable.class
 /KeyHandler.class
+/LevelFive.class
 /LevelFour.class
 /LevelOne.class
+/LevelTwo.class
 /MainApplication.class
 /MainGame.class
 /MenuPane.class
@@ -20,7 +22,7 @@
 /PowerShot.class
 /PowerType.class
 /Projectile.class
+/Settings.class
 /SomePane.class
 /Sounds/
 /WelcomePane.class
-/LevelFive.class

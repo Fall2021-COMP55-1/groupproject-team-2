@@ -60,4 +60,5 @@ public class LevelFour extends GraphicsPane {
 				username = "";
 				text.setLabel(username);
 	}
+	
 }
