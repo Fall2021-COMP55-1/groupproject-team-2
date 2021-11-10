@@ -13,6 +13,7 @@ public class MainApplication extends GraphicsProgram {
 	private WelcomePane welcome;
 	private MenuPane menu;
 	private Settings settings;
+	private LevelFour levelFour;
 	
 	/* Method: setupInteractions
 	 * -------------------------
@@ -117,8 +118,8 @@ public class MainApplication extends GraphicsProgram {
 		switchToScreen(menu);
 	}
 
-	public void switchToSome() {
-		switchToScreen(somePane);
+	public void switchToLevelFour() {
+		switchToScreen(levelFour);
 	}
 
 	public static void main(String[] args) {
