@@ -74,6 +74,10 @@ public class MenuPane extends GraphicsPane {
     public void actionPerformed(ActionEvent e) {
 
     }
+    
+    public String getUsername() {
+    	return username;
+    }
 
     public void keyPressed(KeyEvent e) {
         if(e.getKeyChar() != KeyEvent.VK_BACK_SPACE) {
