@@ -42,7 +42,7 @@ public class Player {
     }
 
     void drawPlayer(int x, int y){
-    	player = new GImage("src/Bullets/Player-Android.png", x/2, y/2);
+    	player = new GImage("src/Images/Android Logo.png", x/2, y/2);
     	program.add(player);
     }
 
