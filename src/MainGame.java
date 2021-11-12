@@ -78,14 +78,19 @@ public class MainGame extends GraphicsPane implements KeyListener, ActionListene
 	@Override
 	public void keyPressed(KeyEvent e) {
 		int key = e.getKeyCode();
-		if(key == KeyEvent.VK_LEFT) {
-			player.updateVelocity(-5,0);
+		if(!paused) {
+			if(key == KeyEvent.VK_LEFT) {
+				player.updateVelocity(-5,0);
+			}
+			else if(key == KeyEvent.VK_RIGHT) {
+				player.updateVelocity(5,0);
+			}
 		}
-		else if(key == KeyEvent.VK_RIGHT) {
-			player.updateVelocity(5,0);
-		}
-		else if(key == KeyEvent.VK_SHIFT) {
-			paused = true;
+		 if(key == KeyEvent.VK_SHIFT) {
+			if(paused)
+				paused = false;
+			else
+				paused = true;
 		}
 	}
 }

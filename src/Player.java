@@ -28,7 +28,7 @@ public class Player {
         velocity = 1;
         lives = 3;
         game = gam;
-        ship = new GImage ("src/Images/koriePlayer.png",280,550);
+        ship = new GImage ("src/Images/Player.png",280,550);
     }
 
     private Projectile shoot(PowerType p){

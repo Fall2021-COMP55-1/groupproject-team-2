@@ -58,7 +58,7 @@ public class MenuPane extends GraphicsPane {
     public void mousePressed(MouseEvent e) {
         GObject obj = program.getElementAt(e.getX(), e.getY());
         if (obj == button) {
-            program.switchToLevelFour();
+
         }
         if(obj == textbox) {
             text = new GLabel(username, 800/2-150/2, 600*2/3-50);
