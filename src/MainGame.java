@@ -78,20 +78,20 @@ public class MainGame extends GraphicsPane implements KeyListener, ActionListene
 	public void keyPressed(KeyEvent e) {
 		int key = e.getKeyCode();
 		if(!paused) {
-			if(key == KeyEvent.VK_LEFT) {
-				player.move(-1,0);
+			if(key == KeyEvent.VK_LEFT || key == KeyEvent.VK_A) {
+				player.move(-10,0);
 			}
-			if(key == KeyEvent.VK_RIGHT) {
-				player.move(1,0);
+			if(key == KeyEvent.VK_RIGHT || key == KeyEvent.VK_D) {
+				player.move(10,0);
 			}
-			if(key == KeyEvent.VK_UP) {
-				player.move(0,-1);
+			if(key == KeyEvent.VK_UP || key == KeyEvent.VK_W) {
+				player.move(0,-10);
 			}
-			if(key == KeyEvent.VK_DOWN) {
-				player.move(0,1);
+			if(key == KeyEvent.VK_DOWN || key == KeyEvent.VK_S) {
+				player.move(0,10);
 			}
 		}
-		 if(key == KeyEvent.VK_SHIFT) {
+		 if(key == KeyEvent.VK_ESCAPE) {
 			if(paused)
 				paused = false;
 			else

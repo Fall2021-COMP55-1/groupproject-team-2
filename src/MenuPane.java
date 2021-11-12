@@ -35,6 +35,7 @@ public class MenuPane extends GraphicsPane {
         button.sendToFront();
         textbox = new GRect(800/2-150/2, 600*2/3-50, 150,37);
         textbox.sendToFront();
+        text = new GLabel(username, 800/2-150/2, 600*2/3-50);
 
     }
 
@@ -60,7 +61,7 @@ public class MenuPane extends GraphicsPane {
 
         }
         if(obj == textbox) {
-            text = new GLabel(username, 800/2-150/2, 600*2/3-50);
+
             text.setFont("Courier");
             text.sendToFront();
             program.add(text);
@@ -84,18 +85,14 @@ public class MenuPane extends GraphicsPane {
     	}
         if(e.getKeyChar() != KeyEvent.VK_BACK_SPACE) {
             username+= e.getKeyChar();
-            try {
-            	text.setLabel(username);
-            } catch(Exception e1) { 
-            	System.out.println(e1);
-            }
+            text.setLabel(username);
         } else
             if(username.length() > 1) {
                 username = username.substring(0,username.length()-2);
                 text.setLabel(username);
-            } else
+            } else {
                 username = "";
-                text.setLabel(username);
-               
+        		text.setLabel(username);
+            }
     }
 }
