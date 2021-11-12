@@ -42,6 +42,26 @@ public class Player {
         return proj;
     }
 
+<<<<<<< HEAD
+=======
+    void move(int x, int y){
+        player.move(x*velocity, y*velocity);
+    }
+
+    void drawPlayer(int x, int y){
+    	player = new GImage("src/Images/Android Logo.png", x/2, y/2);
+    	program.add(player);
+    }
+
+    public String getUsername() {
+        return this.username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+>>>>>>> branch 'main' of https://github.com/Fall2021-COMP55-1/groupproject-team-2.git
     public long getScore() {
         return this.score;
     }
