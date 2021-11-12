@@ -21,7 +21,7 @@ public class MenuPane extends GraphicsPane {
     private GRect textbox;
     private GLabel text;
     private GLine textline;
-    private String username;
+    private String username = " ";
 
     public MenuPane(MainApplication app) {
         super();
@@ -35,7 +35,6 @@ public class MenuPane extends GraphicsPane {
         button.sendToFront();
         textbox = new GRect(800/2-150/2, 600*2/3-50, 150,37);
         textbox.sendToFront();
-        username = "";
 
     }
 
@@ -85,7 +84,11 @@ public class MenuPane extends GraphicsPane {
     	}
         if(e.getKeyChar() != KeyEvent.VK_BACK_SPACE) {
             username+= e.getKeyChar();
-            text.setLabel(username);
+            try {
+            	text.setLabel(username);
+            } catch(Exception e1) { 
+            	System.out.println(e1);
+            }
         } else
             if(username.length() > 1) {
                 username = username.substring(0,username.length()-2);

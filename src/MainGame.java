@@ -28,7 +28,6 @@ public class MainGame extends GraphicsPane implements KeyListener, ActionListene
 		player = new Player("test", program, this);
 		background = new GImage("src/Images/bg.png", 0,0);
 		
-		
 	}
 	
 	
@@ -72,7 +71,7 @@ public class MainGame extends GraphicsPane implements KeyListener, ActionListene
 		if(paused) {
 			return;
 		}
-		player.update();
+		//player.update();
 	}
 	
 	@Override
@@ -80,10 +79,16 @@ public class MainGame extends GraphicsPane implements KeyListener, ActionListene
 		int key = e.getKeyCode();
 		if(!paused) {
 			if(key == KeyEvent.VK_LEFT) {
-				player.updateVelocity(-5,0);
+				player.move(-1,0);
 			}
-			else if(key == KeyEvent.VK_RIGHT) {
-				player.updateVelocity(5,0);
+			if(key == KeyEvent.VK_RIGHT) {
+				player.move(1,0);
+			}
+			if(key == KeyEvent.VK_UP) {
+				player.move(0,-1);
+			}
+			if(key == KeyEvent.VK_DOWN) {
+				player.move(0,1);
 			}
 		}
 		 if(key == KeyEvent.VK_SHIFT) {

@@ -8,7 +8,6 @@ public class Player {
 	
 	private MainApplication program;
     private MainGame game;
-    private GLabel username;
     private long score;
     private int health;
     private int velocity;
@@ -22,13 +21,14 @@ public class Player {
 
     public Player(String un, MainApplication ma, MainGame gam){
     	program = ma;
-        username = new GLabel (un,280, 500);
         score = 0;
         health = 100;
         velocity = 1;
         lives = 3;
         game = gam;
         ship = new GImage ("src/Images/Player.png",280,550);
+        x = ship.getX();
+        y = ship.getY();
     }
 
     private Projectile shoot(PowerType p){
@@ -60,13 +60,21 @@ public class Player {
 
     public void updateVelocity(double x, double y) {
     	if(dx == 0 && x > 0) {
-    		dx = 30;
+    		dx = 6;
     		return;
     	}
     	if(dx == 0 && x < 0) {
-    		dx =  -30;
+    		dx =  -6;
     		return;
     	}
+        if(dy == 0 && y > 0) {
+    			dy = 6;
+    			return;
+       }
+       if(dy == 0 && y < 0) {
+    			dx =  -6;
+    			return;
+       }
        dx += x;
        dy += y;
        if(maxSpeed < dx) {
@@ -95,13 +103,11 @@ public class Player {
 
 	public void hide() {
 		program.remove(ship);
-		program.remove(username);
 		
 	}
 	
 	public void show() {
 		program.add(ship);
-		program.add(username);
 	}
 	
 	public void update() {
@@ -114,7 +120,6 @@ public class Player {
 			ship.setLocation(800 - ship.getWidth(), ship.getY());
 		}
 		ship.move(dx, dy);
-		username.move(dx, dy);
 		if(isMoving || (dx == 0 && dy == 0)) {
 			return;
 		}
@@ -127,10 +132,17 @@ public class Player {
 		if(dx < 3 && dx > -3) {
 			dx = 0;
 		}
+
 	}
 	
 	public void updateMoving(boolean x) {
 		isMoving = x;
 		
+	}
+	
+	public void move(int x, int y) {
+		this.x += x;
+		this.y += y;
+		ship.setLocation(this.x, this.y);
 	}
 }
