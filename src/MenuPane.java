@@ -80,6 +80,9 @@ public class MenuPane extends GraphicsPane {
     }
 
     public void keyPressed(KeyEvent e) {
+    	if(e.getKeyChar() == KeyEvent.VK_ENTER && username != "") {
+    		program.switchToGame();
+    	}
         if(e.getKeyChar() != KeyEvent.VK_BACK_SPACE) {
             username+= e.getKeyChar();
             text.setLabel(username);
@@ -90,5 +93,6 @@ public class MenuPane extends GraphicsPane {
             } else
                 username = "";
                 text.setLabel(username);
+               
     }
 }

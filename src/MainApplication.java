@@ -14,6 +14,7 @@ public class MainApplication extends GraphicsProgram {
 	private MenuPane menu;
 	private Settings settings;
 	private LevelFour levelFour;
+	private MainGame game;
 	
 	/* Method: setupInteractions
 	 * -------------------------
@@ -38,6 +39,10 @@ public class MainApplication extends GraphicsProgram {
 		}
 		newScreen.showContents();
 		curScreen = newScreen;
+	}
+	
+	public void switchToGame() {
+		switchToScreen(game);
 	}
 	
 	@Override
@@ -106,6 +111,7 @@ public class MainApplication extends GraphicsProgram {
 		somePane = new SomePane(this);
 		welcome = new WelcomePane(this);
 		menu = new MenuPane(this);
+		game = new MainGame(this);
 		setupInteractions();
 		switchToWelcome();
 	}

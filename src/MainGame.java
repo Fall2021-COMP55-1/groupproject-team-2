@@ -1,15 +1,15 @@
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
-
+import javax.swing.Timer;
 import acm.graphics.GImage;
 
-public class MainGame extends GraphicsPane {
+public class MainGame extends GraphicsPane implements KeyListener, ActionListener{
 	
-	long startTime = System.nanoTime();
-	long tickTime = 1000000000/60;
-	long lastTick = System.nanoTime();
-	boolean gameOver = false;
+	private Timer timer;
 	ArrayList <Enemy> enemies;
 	ArrayList <Projectile> bullets;
 	GImage background;
@@ -18,26 +18,25 @@ public class MainGame extends GraphicsPane {
 	GImage playerSprite;
 	Player player;
 	private MainApplication program; 
+	boolean paused = false;
 	
 	public MainGame(MainApplication app) {
 		super();
 		program = app;
+		bullets = new ArrayList <Projectile>();
+		//playerSprite = new GImage("/COMP55GroupProject/src/Bullets/Android Logo.png", 300, 300);
+		player = new Player("test", program, this);
+		background = new GImage("src/Images/bg.png", 0,0);
+		
+		
 	}
 	
 	
 	public void playGame() {
-		keys = new KeyHandler();
-		enemies = new ArrayList <Enemy>();
-		bullets = new ArrayList <Projectile>();
-		playerSprite = new GImage("/COMP55GroupProject/src/Bullets/Android Logo.png", 300, 300);
-		player = new Player("test", program);
-		player.setVelocity(4);
-		while(!gameOver){
-			if(System.nanoTime() - lastTick > tickTime) {
-				updatePlayer();
-				lastTick = System.nanoTime();
-			}
-		}
+		//keys = new KeyHandler();
+		//enemies = new ArrayList <Enemy>();
+		
+		
 	}
 	
 	public void updatePlayer() {
@@ -53,13 +52,40 @@ public class MainGame extends GraphicsPane {
 	@Override
 	public void showContents() {
 		// TODO Auto-generated method stub
-
+		program.add(background);
+		player.show();
+		timer = new Timer(10, this);
+		timer.start();
 	}
 
 	@Override
 	public void hideContents() {
 		// TODO Auto-generated method stub
-
+		program.remove(background);
+		player.hide();
 	}
 
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		if(paused) {
+			return;
+		}
+		player.update();
+	}
+	
+	@Override
+	public void keyPressed(KeyEvent e) {
+		int key = e.getKeyCode();
+		if(key == KeyEvent.VK_LEFT) {
+			player.updateVelocity(-5,0);
+		}
+		else if(key == KeyEvent.VK_RIGHT) {
+			player.updateVelocity(5,0);
+		}
+		else if(key == KeyEvent.VK_SHIFT) {
+			paused = true;
+		}
+	}
 }

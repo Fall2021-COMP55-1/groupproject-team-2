@@ -1,29 +1,34 @@
 import java.util.*;
 
 import acm.graphics.GImage;
+import acm.graphics.GLabel;
 
 
 public class Player {
 	
 	private MainApplication program;
-    
-    private String username;
+    private MainGame game;
+    private GLabel username;
     private long score;
     private int health;
     private int velocity;
     private PowerType power;
     private int lives;
-    private int x;
-    private int y;
-    private GImage player;
+    private double x, dx, dy;
+    private double y;
+    private GImage ship;
+    double maxSpeed = 30;
+    boolean isMoving = false;
 
-    public Player(String un, MainApplication ma){
+    public Player(String un, MainApplication ma, MainGame gam){
     	program = ma;
-        username = un;
+        username = new GLabel (un,280, 500);
         score = 0;
         health = 100;
         velocity = 1;
         lives = 3;
+        game = gam;
+        ship = new GImage ("src/Images/koriePlayer.png",280,550);
     }
 
     private Projectile shoot(PowerType p){
@@ -35,23 +40,6 @@ public class Player {
         }
         
         return proj;
-    }
-
-    void move(int x, int y){
-        player.move(x*velocity, y*velocity);
-    }
-
-    void drawPlayer(int x, int y){
-    	player = new GImage("src/Bullets/Player-Android.png", x/2, y/2);
-    	program.add(player);
-    }
-
-    public String getUsername() {
-        return this.username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     public long getScore() {
@@ -74,8 +62,23 @@ public class Player {
         return this.velocity;
     }
 
-    public void setVelocity(int velocity) {
-        this.velocity = velocity;
+    public void updateVelocity(double x, double y) {
+    	if(dx == 0 && x > 0) {
+    		dx = 30;
+    		return;
+    	}
+    	if(dx == 0 && x < 0) {
+    		dx =  -30;
+    		return;
+    	}
+       dx += x;
+       dy += y;
+       if(maxSpeed < dx) {
+    	   dx = maxSpeed;
+       }
+       if(maxSpeed < dy) {
+    	   dy = maxSpeed;
+       }
     }
 
     public PowerType getPower() {
@@ -94,28 +97,44 @@ public class Player {
         this.lives = lives;
     }
 
-    public int getX() {
-        return this.x;
-    }
-
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    public int getY() {
-        return this.y;
-    }
-
-    public void setY(int y) {
-        this.y = y;
-    }
-
-    void increaseUserSpeed(){
-        setVelocity(velocity+10);
-    }
-
-	public void removePlayer() {
-		program.remove(player);
+	public void hide() {
+		program.remove(ship);
+		program.remove(username);
+		
+	}
+	
+	public void show() {
+		program.add(ship);
+		program.add(username);
+	}
+	
+	public void update() {
+		if(ship.getX()+dx < 0) {
+			dx = 0;
+			ship.setLocation(0, ship.getY());
+		}
+		if(ship.getX() + ship.getWidth() + dx > 800) {
+			dx = 0;
+			ship.setLocation(800 - ship.getWidth(), ship.getY());
+		}
+		ship.move(dx, dy);
+		username.move(dx, dy);
+		if(isMoving || (dx == 0 && dy == 0)) {
+			return;
+		}
+		if(dx > 0) {
+			dx = dx - 5;
+		}
+		else {
+			dx = dx + 5;
+		}
+		if(dx < 3 && dx > -3) {
+			dx = 0;
+		}
+	}
+	
+	public void updateMoving(boolean x) {
+		isMoving = x;
 		
 	}
 }
