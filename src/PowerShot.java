@@ -8,7 +8,7 @@ public class PowerShot extends Projectile {
 		super(pt, d, e);
 		program = ma;
 		// TODO Auto-generated constructor stub
-		ps = new GImage("src/Bullets/Power Shot.png", d, e);
+		ps = new GImage("src/Bullets/Rotated Power.png", d-48, e-48);
 		ps.setSize(64,64);
 		program.add(ps);
 		ps.sendToFront();
@@ -17,7 +17,7 @@ public class PowerShot extends Projectile {
 	
 	public PowerType shoot() {
 		for(int i = 0; i < 100; i++) {
-			ps.setLocation(xPos, yPos+i);
+			ps.setLocation(xPos, yPos++);
 		}
 		return PowerType.POWERSHOT;
 	}
