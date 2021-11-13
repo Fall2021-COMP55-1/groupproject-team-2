@@ -141,12 +141,25 @@ public class Player {
 	}
 	
 	public void move(int x, int y) {
-		if(x < 800 - ship.getWidth()) {
-			if(y < 600 - ship.getHeight()) {
-				this.x += x;
-				this.y += y;
-				ship.setLocation(this.x, this.y);
+		if(this.x <= 800 - ship.getWidth() && this.x >= 0) {
+			System.out.println("("+ this.x + ", " + this.y + ") " + x);
+			this.x += x;
+			if(this.x < 0){
+				this.x = 0;
+			} else if(this.x > 800 - ship.getWidth()) {
+				this.x = 800-ship.getWidth();
 			}
 		}
+		if(this.y <= 600 - ship.getHeight() && this.y >= 0) {
+			System.out.println("("+ this.x + ", " + this.y + ") " + y);
+			this.y += y;
+			if(this.y < 0){
+				this.y = 0;
+			} else if(this.y > 600 - ship.getHeight()) {
+				this.y = 600-ship.getHeight();
+			}
+		} 
+		
+		ship.setLocation(this.x, this.y);
 	}
 }
