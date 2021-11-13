@@ -1,11 +1,12 @@
 public class Projectile {
-    int xPos;
-    int yPos;
+    double xPos;
+    double yPos;
     int velocity;
     
 
-    public Projectile(PowerType pt) {
-    
+    public Projectile(PowerType pt, double d, double e) {
+    	xPos = d;
+    	yPos = e;
     }
     
 
@@ -21,10 +22,10 @@ public class Projectile {
     }
     //getters for the class
 
-    public Integer getXPos() {
+    public double getXPos() {
       return this.xPos;
     }
-    public Integer getYPos() {
+    public double getYPos() {
       return this.yPos;
     }
     public Integer getVelocity() {

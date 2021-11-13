@@ -90,6 +90,9 @@ public class MainGame extends GraphicsPane implements KeyListener, ActionListene
 			if(key == KeyEvent.VK_DOWN || key == KeyEvent.VK_S) {
 				player.move(0,10);
 			}
+			if(key == KeyEvent.VK_SPACE) {
+				Projectile shot = player.shoot(player.getPower());
+			}
 		}
 		 if(key == KeyEvent.VK_ESCAPE) {
 			if(paused)

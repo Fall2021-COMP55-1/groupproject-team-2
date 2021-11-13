@@ -18,6 +18,7 @@ public class Player {
     private GImage ship;
     double maxSpeed = 30;
     boolean isMoving = false;
+    private GImage shot;
 
     public Player(String un, MainApplication ma, MainGame gam){
     	program = ma;
@@ -31,14 +32,16 @@ public class Player {
         y = ship.getY();
     }
 
-    private Projectile shoot(PowerType p){
+    public Projectile shoot(PowerType p){
+    	System.out.println("Shooting");
         Projectile proj;
-        if(p == null){
-            proj  = new Projectile(PowerType.NONE);
-        } else {
-            proj = new Projectile(p);
+        if(p == PowerType.POWERSHOT){
+            proj  = new PowerShot(p, ship.getX() + ship.getWidth()/2, ship.getY() - ship.getHeight(), program);
+        } else{
+            proj = new PowerShot(p, ship.getX() + ship.getWidth()/2, ship.getY() - ship.getHeight(), program);
         }
-        
+        power = ((PowerShot) proj).shoot();
+        System.out.println("Proj X: " + proj.getXPos() + " Proj Y: " + proj.getYPos());
         return proj;
     }
 
@@ -150,11 +153,11 @@ public class Player {
 				this.x = 800-ship.getWidth();
 			}
 		}
-		if(this.y <= 600 - ship.getHeight() && this.y >= 0) {
+		if(this.y <= 600 - ship.getHeight() && this.y >= 400) {
 			System.out.println("("+ this.x + ", " + this.y + ") " + y);
 			this.y += y;
-			if(this.y < 0){
-				this.y = 0;
+			if(this.y < 400){
+				this.y = 400;
 			} else if(this.y > 600 - ship.getHeight()) {
 				this.y = 600-ship.getHeight();
 			}
