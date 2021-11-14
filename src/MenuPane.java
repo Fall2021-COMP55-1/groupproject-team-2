@@ -22,15 +22,18 @@ public class MenuPane extends GraphicsPane {
     private GLabel text;
     private GLine textline;
     private String username = " ";
+    private GImage settings;
 
     public MenuPane(MainApplication app) {
         super();
-
+    	
         String filename = "src/Images/cloud.gif";
         background = new GImage(filename, 0,0);
         program = app;
         title = new GImage("src/Images/title.png", program.getWidth()/2 - 233, program.getHeight()/5-(150/5));
         title.sendToFront();
+        settings = new GImage("src/Images/settings gears.png", 710, 10);
+        settings.sendToFront();
         button = new GImage("src/Images/continue button.png", program.getWidth()/2-59, program.getHeight()*4/5);
         button.sendToFront();
         textbox = new GRect(800/2-150/2, 600*2/3-50, 150,37);
@@ -45,6 +48,7 @@ public class MenuPane extends GraphicsPane {
         program.add(title);
         program.add(button);
         program.add(textbox);
+        program.add(settings);
     }
 
     @Override
@@ -52,6 +56,7 @@ public class MenuPane extends GraphicsPane {
         program.remove(background);
         program.remove(title);
         program.remove(button);
+        program.remove(settings);
     }
 
     @Override
@@ -59,6 +64,9 @@ public class MenuPane extends GraphicsPane {
         GObject obj = program.getElementAt(e.getX(), e.getY());
         if (obj == button) {
 
+        }
+        if (obj == settings) {
+        	program.switchToSettings();
         }
         if(obj == textbox) {
 
