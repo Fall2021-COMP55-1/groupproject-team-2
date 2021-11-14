@@ -23,7 +23,7 @@ public class TransitionPane extends GraphicsPane {
     public TransitionPane(MainApplication app) {
         super();
         program = app;
-        text = new GLabel("Level Finished, Congratulations", 300, 200);
+        text = new GLabel("Level Finished, Congratulations!", 300, 200);
         text2 = new GLabel("Current Score: ", 300, 250);
         text3 = new GLabel("Player Health: ", 300, 300);
         
