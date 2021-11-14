@@ -108,6 +108,7 @@ public class MainApplication extends GraphicsProgram {
 		System.out.println("Let's make something awesome!");
 		welcome = new WelcomePane(this);
 		menu = new MenuPane(this);
+		settings = new Settings(this);
 		game = new MainGame(this);
 		setupInteractions();
 		switchToWelcome();
