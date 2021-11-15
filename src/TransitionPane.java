@@ -19,13 +19,15 @@ public class TransitionPane extends GraphicsPane {
     private GLabel text;
     private GLabel text2;
     private GLabel text3;
+    int playerScore; 
+    int playerHealth;
     
     public TransitionPane(MainApplication app) {
         super();
         program = app;
-        text = new GLabel("Level Finished, Congratulations!", 300, 200);
-        text2 = new GLabel("Current Score: ", 300, 250);
-        text3 = new GLabel("Player Health: ", 300, 300);
+        text = new GLabel("Level Finished, Congratulations!", 300, 250);
+        text2 = new GLabel("Current Score: " + playerScore, 300, 300);
+        text3 = new GLabel("Player Health:" + playerHealth, 300, 350);
         
         
     }

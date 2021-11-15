@@ -18,6 +18,7 @@ public class MenuPane extends GraphicsPane {
     private GImage background;
     private GImage title;
     private GImage button;
+    private GImage transition;
     private GRect textbox;
     private GLabel text;
     private GLine textline;
@@ -27,6 +28,7 @@ public class MenuPane extends GraphicsPane {
     public MenuPane(MainApplication app) {
         super();
     	
+        transition = new GImage("src/Images/player.png", 400, 300);
         String filename = "src/Images/cloud.gif";
         background = new GImage(filename, 0,0);
         program = app;
@@ -49,6 +51,7 @@ public class MenuPane extends GraphicsPane {
         program.add(button);
         program.add(textbox);
         program.add(settings);
+        program.add(transition);
     }
 
     @Override
@@ -56,7 +59,9 @@ public class MenuPane extends GraphicsPane {
         program.remove(background);
         program.remove(title);
         program.remove(button);
+        program.remove(textbox);
         program.remove(settings);
+        program.remove(transition);
     }
 
     @Override
@@ -67,6 +72,9 @@ public class MenuPane extends GraphicsPane {
         }
         if (obj == settings) {
         	program.switchToSettings();
+        }
+        if (obj == transition) {
+        	program.switchToTransition();
         }
         if(obj == textbox) {
 
