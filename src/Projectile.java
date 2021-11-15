@@ -4,7 +4,7 @@ public class Projectile {
     int velocity;
     
 
-    public Projectile(PowerType pt, double d, double e) {
+    public Projectile(double d, double e) {
     	xPos = d;
     	yPos = e;
     }

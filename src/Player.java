@@ -18,7 +18,8 @@ public class Player {
     private GImage ship;
     double maxSpeed = 30;
     boolean isMoving = false;
-    private GImage shot;
+    private ArrayList<Projectile> shots;
+    
 
     public Player(String un, MainApplication ma, MainGame gam){
     	program = ma;
@@ -30,19 +31,18 @@ public class Player {
         ship = new GImage ("src/Images/Player.png",280,550);
         x = ship.getX();
         y = ship.getY();
+        shots = new ArrayList<Projectile>();
     }
 
     public Projectile shoot(PowerType p){
     	System.out.println("Shooting");
-        Projectile proj;
         if(p == PowerType.POWERSHOT){
-            proj  = new PowerShot(p, ship.getX() + ship.getWidth()/2, ship.getY() - ship.getHeight(), program);
+            shots.add( new PowerShot(ship.getX() + ship.getWidth()/2 - 32, ship.getY() - 2*ship.getHeight() - ship.getHeight() - 5, program));
         } else{
-            proj = new PowerShot(p, ship.getX() + ship.getWidth()/2, ship.getY() - ship.getHeight(), program);
+            shots.add(new MultipleShot(p, ship.getX() + ship.getWidth()/2 - 32, ship.getY() - 2*ship.getHeight() - ship.getHeight() - 5, program));
         }
-        power = ((PowerShot) proj).shoot();
-        System.out.println("Proj X: " + proj.getXPos() + " Proj Y: " + proj.getYPos());
-        return proj;
+        System.out.println("Proj X: " + shots.get(shots.size()-1).getXPos() + " Proj Y: " + shots.get(shots.size()-1).getYPos());
+        return shots.get(shots.size()-1);
     }
 
     public void setScore(long score) {

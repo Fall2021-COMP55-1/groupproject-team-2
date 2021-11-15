@@ -4,8 +4,8 @@ public class PowerShot extends Projectile {
 	//fields
 	private GImage ps;
 	private MainApplication program;
-	public PowerShot( PowerType pt, double d, double e, MainApplication ma) {
-		super(pt, d, e);
+	public PowerShot(double d, double e, MainApplication ma) {
+		super(d, e);
 		program = ma;
 		// TODO Auto-generated constructor stub
 		ps = new GImage("src/Bullets/Rotated Power.png", d-48, e-48);
