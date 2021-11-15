@@ -12,6 +12,7 @@ public class MainApplication extends GraphicsProgram {
 	private WelcomePane welcome;
 	private MenuPane menu;
 	private Settings settings;
+	private TransitionPane transition;
 	private MainGame game;
 	
 	/* Method: setupInteractions
@@ -109,6 +110,7 @@ public class MainApplication extends GraphicsProgram {
 		welcome = new WelcomePane(this);
 		menu = new MenuPane(this);
 		settings = new Settings(this);
+		transition = new TransitionPane(this);
 		game = new MainGame(this);
 		setupInteractions();
 		switchToWelcome();
@@ -128,5 +130,9 @@ public class MainApplication extends GraphicsProgram {
 
 	public void switchToSettings() {
 		switchToScreen(settings);	
+	}
+	
+	public void switchToTransition() {
+		switchToScreen(transition);	
 	}
 }
