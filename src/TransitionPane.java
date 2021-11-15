@@ -19,6 +19,7 @@ public class TransitionPane extends GraphicsPane {
     private GLabel text;
     private GLabel text2;
     private GLabel text3;
+    private GImage button;
     int playerScore; 
     int playerHealth;
     
@@ -28,8 +29,9 @@ public class TransitionPane extends GraphicsPane {
         text = new GLabel("Level Finished, Congratulations!", 300, 250);
         text2 = new GLabel("Current Score: " + playerScore, 300, 300);
         text3 = new GLabel("Player Health:" + playerHealth, 300, 350);
+        button = new GImage("src/Images/continue button.png", program.getWidth()/2-59, program.getHeight()*4/5);
         
-        
+     
     }
 
     @Override
@@ -37,13 +39,14 @@ public class TransitionPane extends GraphicsPane {
         program.add(text);
         program.add(text2);
         program.add(text3);
+        program.add(button);
     }
 
     @Override
     public void hideContents() {
         program.remove(text);
         program.remove(text2);
-        program.remove(text3);
+        program.remove(button);
     }
 
     @Override
