@@ -10,7 +10,6 @@ public class Enemy {
 	public Enemy(int x, int y, MainApplication ma){
 	    program = ma;
 	    health = 20;
-	        
 	}
 	
 	public void draw(int x, int y) {
@@ -27,7 +26,7 @@ public class Enemy {
 	}
 
 	public void dealDamage(int d) {
-		
+		health -= d;
 	}
 	
 	public void setX(int xPos) {

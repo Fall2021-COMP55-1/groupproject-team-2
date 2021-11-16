@@ -92,11 +92,25 @@ public class MainGame extends GraphicsPane implements KeyListener, ActionListene
 			}
 			if(key == KeyEvent.VK_SPACE) {
 				Projectile shot = player.shoot(player.getPower());
+				if(player.getPower() == PowerType.POWERSHOT) {
+					
+					System.out.println("Deleting");
+					boolean collided = player.hasCollidedPS(shot);
+					if(collided)
+						player.delete(shot);
+				} else {
+					System.out.println("Deleting");
+					boolean collided = player.hasCollidedMS(shot);
+					if(collided)
+						player.delete(shot);
+				}
 			}
 		}
 		 if(key == KeyEvent.VK_ESCAPE) {
-			if(paused)
+			if(paused) {
 				paused = false;
+				program.switchToSettings();
+			}
 			else
 				paused = true;
 		}

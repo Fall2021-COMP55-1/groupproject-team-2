@@ -31,4 +31,10 @@ public class Projectile {
     public Integer getVelocity() {
       return this.velocity;
     }
+
+
+	public void remove() {
+		// TODO Auto-generated method stub
+		
+	}
 }

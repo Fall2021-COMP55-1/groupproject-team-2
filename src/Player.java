@@ -36,13 +36,17 @@ public class Player {
 
     public Projectile shoot(PowerType p){
     	System.out.println("Shooting");
-        if(p == PowerType.POWERSHOT){
-            shots.add( new PowerShot(ship.getX() + ship.getWidth()/2 - 32, ship.getY() - 2*ship.getHeight() - ship.getHeight() - 5, program));
-        } else{
-            shots.add(new MultipleShot(p, ship.getX() + ship.getWidth()/2 - 32, ship.getY() - 2*ship.getHeight() - ship.getHeight() - 5, program));
-        }
+        shots.add(new MultipleShot(p, ship.getX() + ship.getWidth()/2 - 32, ship.getY() - 2*ship.getHeight() - ship.getHeight() - 5, program));
         System.out.println("Proj X: " + shots.get(shots.size()-1).getXPos() + " Proj Y: " + shots.get(shots.size()-1).getYPos());
         return shots.get(shots.size()-1);
+    }
+    
+    public void delete(Projectile proj) {
+    	if(shots.contains(proj)) {
+    		System.out.println("deleting proj");
+    		shots.remove(proj);
+    		proj.remove();
+    	}
     }
 
     public void setScore(long score) {
@@ -164,5 +168,25 @@ public class Player {
 		} 
 		
 		ship.setLocation(this.x, this.y);
+	}
+
+	public boolean hasCollidedPS(Projectile shot) {
+		// TODO Auto-generated method stub
+		System.out.println("Shot coord" + shot.getXPos() + " " + shot.getYPos());
+		if(shot.getYPos() < 0) {
+			System.out.println("Colliding");
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean hasCollidedMS(Projectile shot) {	
+		// TODO Auto-generated method stub
+		System.out.println("Shot coord" + shot.getXPos() + " " + shot.getYPos());
+		if(shot.getYPos() < 0) {
+			System.out.println("Colliding");
+			return true;
+		}
+		return false;
 	}
 }
