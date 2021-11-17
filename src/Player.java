@@ -36,7 +36,8 @@ public class Player {
 
     public Projectile shoot(PowerType p){
     	System.out.println("Shooting");
-        shots.add(new MultipleShot(p, ship.getX() + ship.getWidth()/2 - 32, ship.getY() - 2*ship.getHeight() - ship.getHeight() - 5, program));
+    	p = PowerType.TRIPLESHOT;
+        shots.add(new Shots(p, ship.getX() + ship.getWidth()/2 - 32, ship.getY() - 2*ship.getHeight() - ship.getHeight() - 5, program));
         System.out.println("Proj X: " + shots.get(shots.size()-1).getXPos() + " Proj Y: " + shots.get(shots.size()-1).getYPos());
         return shots.get(shots.size()-1);
     }
