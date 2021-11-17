@@ -12,6 +12,7 @@ public class MainApplication extends GraphicsProgram {
 	private WelcomePane welcome;
 	private MenuPane menu;
 	private Settings settings;
+	private Leaderboard leaderboard;
 	private TransitionPane transition;
 	private MainGame game;
 	
@@ -109,6 +110,7 @@ public class MainApplication extends GraphicsProgram {
 		System.out.println("Let's make something awesome!");
 		welcome = new WelcomePane(this);
 		menu = new MenuPane(this);
+		leaderboard = new Leaderboard(this);
 		settings = new Settings(this);
 		transition = new TransitionPane(this);
 		game = new MainGame(this);
@@ -130,6 +132,11 @@ public class MainApplication extends GraphicsProgram {
 
 	public void switchToSettings() {
 		switchToScreen(settings);	
+	}
+	
+	public void switchToLeaderboard() {
+		switchToScreen(leaderboard);
+		
 	}
 	
 	public void switchToTransition() {

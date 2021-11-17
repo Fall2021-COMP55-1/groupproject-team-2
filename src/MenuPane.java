@@ -24,6 +24,7 @@ public class MenuPane extends GraphicsPane {
     private GLine textline;
     private String username = " ";
     private GImage settings;
+    private GImage leaderboard;
 
     public MenuPane(MainApplication app) {
         super();
@@ -36,6 +37,8 @@ public class MenuPane extends GraphicsPane {
         title.sendToFront();
         settings = new GImage("src/Images/settings gears.png", 710, 10);
         settings.sendToFront();
+        leaderboard = new GImage("src/Images/leaderboardImage.png", 10, 10);
+        leaderboard.sendToFront();
         button = new GImage("src/Images/continue button.png", program.getWidth()/2-59, program.getHeight()*4/5);
         button.sendToFront();
         textbox = new GRect(800/2-150/2, 600*2/3-50, 150,37);
@@ -51,6 +54,7 @@ public class MenuPane extends GraphicsPane {
         program.add(button);
         program.add(textbox);
         program.add(settings);
+        program.add(leaderboard);
         program.add(transition);
     }
 
@@ -61,6 +65,7 @@ public class MenuPane extends GraphicsPane {
         program.remove(button);
         program.remove(textbox);
         program.remove(settings);
+        program.remove(leaderboard);
         program.remove(transition);
     }
 
@@ -70,6 +75,9 @@ public class MenuPane extends GraphicsPane {
         if (obj == button) {
 
         }
+        if (obj == leaderboard) {
+            	program.switchToLeaderboard();
+            }
         if (obj == settings) {
         	program.switchToSettings();
         }
