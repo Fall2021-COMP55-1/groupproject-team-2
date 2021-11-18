@@ -13,6 +13,7 @@ import java.awt.Graphics2D;
 
 public class Settings extends GraphicsPane {
 	
+	private boolean isOn = false;
     private MainApplication program; 
     private GImage background;
     private GImage settings;
@@ -25,6 +26,10 @@ public class Settings extends GraphicsPane {
     private GImage mText;
     private GImage sText;
     private GImage bButton;
+    
+    private GRect temp;
+    private GRect temp1;
+    
     private GImage sBox1;
     private GImage sBox2;
     private GImage sBox3;
@@ -43,7 +48,11 @@ public class Settings extends GraphicsPane {
         String filename = "src/Images/cloud.gif";
         background = new GImage(filename, 0,0);
         program = app;
+        
         sBoxFilled = new GImage("src/Images/selectionBoxFilled.png", 340, 135);
+        sBoxFilled = new GImage("src/Images/selectionBoxFilled.png", 450, 135);
+        sBoxFilled = new GImage("src/Images/selectionBoxFilled.png", 560, 135);
+        
         settingsTitle = new GImage("src/Images/settings Title.png", -50, 0);
         settingsTitle.sendToFront();
         difficultyLevelBox = new GImage("src/Images/difficultyLevelBox.png", -73, 80);
@@ -66,6 +75,12 @@ public class Settings extends GraphicsPane {
         bButton.sendToFront();
         sBox1 = new GImage("src/Images/selectionBox.png", 340, 135);
         sBox1.sendToFront();
+        
+        temp = new GRect(370, 143, 30, 30);
+        temp.setFillColor(Color.RED);
+        temp1 = new GRect(480, 143, 30, 30);
+        temp1.setFillColor(Color.RED);
+        
         sBox2 = new GImage("src/Images/selectionBox.png", 450, 135);
         sBox2.sendToFront();
         sBox3 = new GImage("src/Images/selectionBox.png", 560, 135);
@@ -110,6 +125,9 @@ public class Settings extends GraphicsPane {
         program.add(hText);
         program.add(onText);
         program.add(offText);
+        
+        program.add(temp);
+        program.add(temp1);
     }
 
     @Override
@@ -135,11 +153,13 @@ public class Settings extends GraphicsPane {
         program.remove(hText);
         program.remove(onText);
         program.remove(offText);
+        
+        program.remove(temp);
+        program.remove(temp1);
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
-    	boolean isOn = false;
         GObject obj = program.getElementAt(e.getX(), e.getY());
         if (obj == bButton) {
         	program.switchToMenu();
@@ -147,16 +167,22 @@ public class Settings extends GraphicsPane {
         if (obj == settings) {
         	program.switchToSettings();
         }
-        /*if (obj == sBox1 || obj == sBox2 || obj == sBox3) {
+        if (obj == temp || obj == temp1 || obj == sBoxFilled) {
+        	System.out.println("Clicked on box");
         	if (isOn) {
         		isOn = false;
         		program.remove(sBoxFilled);
+        		temp.setFilled(false);
+        		System.out.println("Remove filled");
         	}
         	else {
         		isOn = true;
         		program.add(sBoxFilled);
+        		temp.setFilled(true);
+        		System.out.println("Add filled");
         	}
-        }*/
+        }
+        
         /*
         if (obj == sBox1) {
         	if (isOn) {
