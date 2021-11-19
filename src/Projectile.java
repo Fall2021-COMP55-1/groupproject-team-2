@@ -36,13 +36,16 @@ public class Projectile {
       return this.velocity;
     }
 
-
     public void update() {
     	
     }
     
 	public void remove() {
 		
+	}
+
+	public void hide() {
+		// TODO Auto-generated method stub	
 	}
 
 
@@ -52,13 +55,10 @@ public class Projectile {
 	}
 
 
-	public void hide() {
-		// TODO Auto-generated method stub
-		
-	}
 
 
-	public int getY() {
+
+	public double getY() {
 		// TODO Auto-generated method stub
 		return ship.getY();
 	}
