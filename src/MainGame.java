@@ -15,7 +15,7 @@ public class MainGame extends GraphicsPane implements KeyListener, ActionListene
     
     private Timer timer;
     ArrayList <Enemy> enemies;
-    ArrayList <Shots> bullets;
+    ArrayList <Projectile> bullets;
     GImage background;
     KeyHandler keys;
     int enemyDx;
@@ -29,7 +29,7 @@ public class MainGame extends GraphicsPane implements KeyListener, ActionListene
     public MainGame(MainApplication app) {
         super();
         program = app;
-        bullets = new ArrayList <Shots>();
+        bullets = new ArrayList <Projectile>();
         //playerSprite = new GImage("/COMP55GroupProject/src/Bullets/Android Logo.png", 300, 300);
         player = new Player("test", program, this);
         background = new GImage("src/Images/bg.png", 0,0);
@@ -59,14 +59,14 @@ public class MainGame extends GraphicsPane implements KeyListener, ActionListene
         }
     }
     
-    public boolean rectCollision(GRect boxA, GRect boxB) {
-    	double minX = boxA.getX();
-    	double minY = boxA.getY();
-    	double maxX = minX + boxA.getWidth();
-    	double maxY = minY + boxA.getHeight();
+    public boolean rectCollision(GRectangle gRectangle, GRectangle gRectangle2) {
+    	double minX = gRectangle.getX();
+    	double minY = gRectangle.getY();
+    	double maxX = minX + gRectangle.getWidth();
+    	double maxY = minY + gRectangle.getHeight();
     	
-    	if(boxB.getX() > maxX || minX > boxB.getX() + boxB.getWidth()) return false;
-    	if(boxB.getY() > maxY || minY > boxB.getY() + boxB.getHeight()) return false;
+    	if(gRectangle2.getX() > maxX || minX > gRectangle2.getX() + gRectangle2.getWidth()) return false;
+    	if(gRectangle2.getY() > maxY || minY > gRectangle2.getY() + gRectangle2.getHeight()) return false;
     	return true;
     }
     
@@ -94,12 +94,12 @@ public class MainGame extends GraphicsPane implements KeyListener, ActionListene
             return;
         }
         player.update();
-        Iterator<Projectile> iter = bullets.iterator();
+        /*Iterator<Shots> iter = bullets.iterator();
         while(iter.hasNext()) {
         	Projectile temp = iter.next();
         	temp.update();
         	if(EnemyPack.checkCollision(temp.getImage().getBounds()))
-        	if(collision(temp.getImage().getBounds(),player.getBounds())) {
+        	if(rectCollision(temp.getImage().getBounds(),player.getBounds())) {
         		player.takedamage();
             	temp.hide();
             	iter.remove();
@@ -107,7 +107,7 @@ public class MainGame extends GraphicsPane implements KeyListener, ActionListene
         	else if(temp.getY() < 0 || temp.getY() > 600) {
         		
         	}
-        }
+        }*/
     }
 
 	@Override

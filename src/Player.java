@@ -2,6 +2,7 @@ import java.util.*;
 
 import acm.graphics.GImage;
 import acm.graphics.GLabel;
+import acm.graphics.GRectangle;
 
 
 public class Player {
@@ -32,11 +33,18 @@ public class Player {
         y = ship.getY();
     }
 
-    public Shots shoot(PowerType p){
+    public Projectile shoot(PowerType p){
     	System.out.println("Shooting");
-    	p = PowerType.TRIPLESHOT;
-        Shots shot = new Shots(p, ship.getX() + ship.getWidth()/2 - 32, ship.getY() - 2*ship.getHeight() - ship.getHeight() - 5, program);
-       
+    	p = PowerType.NONE;
+        Projectile shot = null; 
+        if(p == PowerType.NONE || p == null || p == PowerType.POWERSHOT) {
+        	shot = new PowerNoneShot(p, ship.getX() + ship.getWidth()/2 - 32, ship.getY() - 2*ship.getHeight() - ship.getHeight() - 5, program);
+        	p = PowerType.NONE;
+        } else if(p == PowerType.DOUBLESHOT) {
+        	shot = new DoubleShot(p, ship.getX() + ship.getWidth()/2 - 32, ship.getY() - 2*ship.getHeight() - ship.getHeight() - 5, program);
+        } else if(p == PowerType.TRIPLESHOT) {
+        	shot = new TripleShot(p, ship.getX() + ship.getWidth()/2 - 32, ship.getY() - 2*ship.getHeight() - ship.getHeight() - 5, program);
+        }
         return shot;
     }
 
@@ -176,6 +184,16 @@ public class Player {
 		} 
 		
 		ship.setLocation(this.x, this.y);
+	}
+
+	public void takedamage() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public GRectangle getBounds() {
+		// TODO Auto-generated method stub
+		return ship.getBounds();
 	}
 
 }
