@@ -18,7 +18,6 @@ public class Player {
     private GImage ship;
     double maxSpeed = 30;
     boolean isMoving = false;
-    private ArrayList<Projectile> shots;
     
 
     public Player(String un, MainApplication ma, MainGame gam){
@@ -31,15 +30,14 @@ public class Player {
         ship = new GImage ("src/Images/Player.png",280,550);
         x = ship.getX();
         y = ship.getY();
-        shots = new ArrayList<Projectile>();
     }
 
-    public Projectile shoot(PowerType p){
+    public Shots shoot(PowerType p){
     	System.out.println("Shooting");
     	p = PowerType.TRIPLESHOT;
-        shots.add(new Shots(p, ship.getX() + ship.getWidth()/2 - 32, ship.getY() - 2*ship.getHeight() - ship.getHeight() - 5, program));
-        System.out.println("Proj X: " + shots.get(shots.size()-1).getXPos() + " Proj Y: " + shots.get(shots.size()-1).getYPos());
-        return shots.get(shots.size()-1);
+        Shots shot = new Shots(p, ship.getX() + ship.getWidth()/2 - 32, ship.getY() - 2*ship.getHeight() - ship.getHeight() - 5, program);
+       
+        return shot;
     }
     
     public void delete(Projectile proj) {
@@ -80,7 +78,7 @@ public class Player {
     			return;
        }
        if(dy == 0 && y < 0) {
-    			dx =  -6;
+    			dy =  -6;
     			return;
        }
        dx += x;
@@ -127,18 +125,35 @@ public class Player {
 			dx = 0;
 			ship.setLocation(800 - ship.getWidth(), ship.getY());
 		}
+		if(ship.getY()+dy < 0) {
+			dy = 0;
+			ship.setLocation(ship.getX(), 0);
+		}
+		if(ship.getY() + ship.getHeight() + dy > 600) {
+			dy = 0;
+			ship.setLocation(ship.getX(),600 - ship.getHeight() );
+		}
 		ship.move(dx, dy);
 		if(isMoving || (dx == 0 && dy == 0)) {
 			return;
 		}
 		if(dx > 0) {
-			dx = dx - 5;
+			dx = dx - 0.5;
 		}
 		else {
-			dx = dx + 5;
+			dx = dx + 0.5;
 		}
-		if(dx < 3 && dx > -3) {
+		if(dx < 1 && dx > -1) {
 			dx = 0;
+		}
+		if(dy > 0) {
+			dy = dy - 0.5;
+		}
+		else {
+			dy = dy + 0.5;
+		}
+		if(dy < 1 && dy > -1) {
+			dy = 0;
 		}
 
 	}
@@ -171,23 +186,4 @@ public class Player {
 		ship.setLocation(this.x, this.y);
 	}
 
-	public boolean hasCollidedPS(Projectile shot) {
-		// TODO Auto-generated method stub
-		System.out.println("Shot coord" + shot.getXPos() + " " + shot.getYPos());
-		if(shot.getYPos() < 0) {
-			System.out.println("Colliding");
-			return true;
-		}
-		return false;
-	}
-	
-	public boolean hasCollidedMS(Projectile shot) {	
-		// TODO Auto-generated method stub
-		System.out.println("Shot coord" + shot.getXPos() + " " + shot.getYPos());
-		if(shot.getYPos() < 0) {
-			System.out.println("Colliding");
-			return true;
-		}
-		return false;
-	}
 }

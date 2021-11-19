@@ -4,14 +4,17 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
+import java.util.Iterator;
+
 import javax.swing.Timer;
 import acm.graphics.GImage;
+import acm.graphics.GRect;
 
 public class MainGame extends GraphicsPane implements KeyListener, ActionListener{
     
     private Timer timer;
     ArrayList <Enemy> enemies;
-    ArrayList <Projectile> bullets;
+    ArrayList <Shots> bullets;
     GImage background;
     KeyHandler keys;
     int enemyDx;
@@ -23,7 +26,7 @@ public class MainGame extends GraphicsPane implements KeyListener, ActionListene
     public MainGame(MainApplication app) {
         super();
         program = app;
-        bullets = new ArrayList <Projectile>();
+        bullets = new ArrayList <Shots>();
         //playerSprite = new GImage("/COMP55GroupProject/src/Bullets/Android Logo.png", 300, 300);
         player = new Player("test", program, this);
         background = new GImage("src/Images/bg.png", 0,0);
@@ -46,6 +49,17 @@ public class MainGame extends GraphicsPane implements KeyListener, ActionListene
         else if(keys.keyDown(KeyEvent.VK_RIGHT)) {
             playerSprite.move(player.getVelocity(), 0);
         }
+    }
+    
+    public boolean rectCollision(GRect boxA, GRect boxB) {
+    	double minX = boxA.getX();
+    	double minY = boxA.getY();
+    	double maxX = minX + boxA.getWidth();
+    	double maxY = minY + boxA.getHeight();
+    	
+    	if(boxB.getX() > maxX || minX > boxB.getX() + boxB.getWidth()) return false;
+    	if(boxB.getY() > maxY || minY > boxB.getY() + boxB.getHeight()) return false;
+    	return true;
     }
     
     @Override
@@ -71,7 +85,14 @@ public class MainGame extends GraphicsPane implements KeyListener, ActionListene
         if(paused) {
             return;
         }
-        //player.update();
+        player.update();
+        /*Iterator<Shots> iter = bullets.iterator();
+        while(iter.hasNext()) {
+        	Shots temp = iter.next();
+        	temp.update();
+        	if(Collision(temp.getImage().getBounds(),))
+        }*/
+        
     }
     
     @Override
@@ -79,19 +100,21 @@ public class MainGame extends GraphicsPane implements KeyListener, ActionListene
         int key = e.getKeyCode();
         if(!paused) {
             if(key == KeyEvent.VK_LEFT || key == KeyEvent.VK_A) {
-                player.move(-10,0);
+                //player.move(-10,0);
+                player.updateVelocity(-2, 0);
             }
             if(key == KeyEvent.VK_RIGHT || key == KeyEvent.VK_D) {
-                player.move(10,0);
+                //player.move(10,0);
+            	player.updateVelocity(2, 0);
             }
             if(key == KeyEvent.VK_UP || key == KeyEvent.VK_W) {
-                player.move(0,-10);
+                player.updateVelocity(0,-2);
             }
             if(key == KeyEvent.VK_DOWN || key == KeyEvent.VK_S) {
-                player.move(0,10);
+                player.updateVelocity(0,2);
             }
             if(key == KeyEvent.VK_SPACE) {
-                Projectile shot = player.shoot(player.getPower());
+                bullets.add(player.shoot(player.getPower()));
         /*        if(player.getPower() == PowerType.POWERSHOT) {
                     
                     System.out.println("Deleting");
