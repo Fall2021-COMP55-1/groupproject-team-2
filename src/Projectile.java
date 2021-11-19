@@ -1,7 +1,11 @@
+import acm.graphics.GImage;
+import acm.graphics.GObject;
+
 public class Projectile {
     double xPos;
     double yPos;
     int velocity;
+    GImage ship;
     
 
     public Projectile(double d, double e) {
@@ -32,9 +36,30 @@ public class Projectile {
       return this.velocity;
     }
 
-
+    public void update() {
+    	
+    }
+    
 	public void remove() {
 		// TODO Auto-generated method stub
 		
+	}
+
+
+	public GObject getImage() {
+		// TODO Auto-generated method stub
+		return ship;
+	}
+
+
+	public void hide() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	public int getY() {
+		// TODO Auto-generated method stub
+		return ship.getY();
 	}
 }

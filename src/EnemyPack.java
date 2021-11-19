@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 
+import acm.graphics.GRectangle;
+
 public class EnemyPack {
  ArrayList <Enemy> enemies;
  double dx, dy;
@@ -15,4 +17,9 @@ public class EnemyPack {
 	 dx = 0.3;
 	 
  }
+
+public static boolean checkCollision(GRectangle bounds) {
+	// TODO Auto-generated method stub
+	return false;
+}
 }

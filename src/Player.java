@@ -80,7 +80,7 @@ public class Player {
     			return;
        }
        if(dy == 0 && y < 0) {
-    			dx =  -6;
+    			dy =  -6;
     			return;
        }
        dx += x;
@@ -189,5 +189,15 @@ public class Player {
 			return true;
 		}
 		return false;
+	}
+
+	public void takedamage() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public Object getBounds() {
+		// TODO Auto-generated method stub
+		return ship.getBounds();
 	}
 }

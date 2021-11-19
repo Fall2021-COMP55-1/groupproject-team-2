@@ -4,8 +4,11 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
+import java.util.Iterator;
+
 import javax.swing.Timer;
 import acm.graphics.GImage;
+import acm.graphics.GRectangle;
 
 public class MainGame extends GraphicsPane implements KeyListener, ActionListener{
     
@@ -19,6 +22,8 @@ public class MainGame extends GraphicsPane implements KeyListener, ActionListene
     Player player;
     private MainApplication program; 
     boolean paused = false;
+    private EnemyPack enemyLevelThree;
+	private int level;
     
     public MainGame(MainApplication app) {
         super();
@@ -34,8 +39,12 @@ public class MainGame extends GraphicsPane implements KeyListener, ActionListene
     public void playGame() {
         //keys = new KeyHandler();
         //enemies = new ArrayList <Enemy>();
-        
-        
+    	int level = 3;
+    	if(enemyLevelThree == null) {
+    		level++;
+    		program.switchToTransition(level);
+    	}
+        enemyLevelThree = new EnemyPack(program, this, 3);
     }
     
     public void updatePlayer() {
@@ -71,10 +80,24 @@ public class MainGame extends GraphicsPane implements KeyListener, ActionListene
         if(paused) {
             return;
         }
-        //player.update();
+        player.update();
+        Iterator<Projectile> iter = bullets.iterator();
+        while(iter.hasNext()) {
+        	Projectile temp = iter.next();
+        	temp.update();
+        	if(EnemyPack.checkCollision(temp.getImage().getBounds()))
+        	if(collision(temp.getImage().getBounds(),player.getBounds())) {
+        		player.takedamage();
+            	temp.hide();
+            	iter.remove();
+            }
+        	else if(temp.getY() < 0 || temp.getY() > 600) {
+        		
+        	}
+        }
     }
-    
-    @Override
+
+	@Override
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
         if(!paused) {
@@ -115,4 +138,10 @@ public class MainGame extends GraphicsPane implements KeyListener, ActionListene
                 paused = true;
         }
     }
+
+
+	public void changeLevel(int level) {
+		// TODO Auto-generated method stub
+		this.level = level;
+	}
 }
