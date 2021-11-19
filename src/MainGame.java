@@ -8,11 +8,8 @@ import java.util.Iterator;
 
 import javax.swing.Timer;
 import acm.graphics.GImage;
-<<<<<<< HEAD
 import acm.graphics.GRectangle;
-=======
 import acm.graphics.GRect;
->>>>>>> branch 'main' of https://github.com/Fall2021-COMP55-1/groupproject-team-2.git
 
 public class MainGame extends GraphicsPane implements KeyListener, ActionListener{
     
@@ -46,7 +43,8 @@ public class MainGame extends GraphicsPane implements KeyListener, ActionListene
     	int level = 3;
     	if(enemyLevelThree == null) {
     		level++;
-    		program.switchToTransition(level);
+    		//TODO:
+    		//program.switchToTransition(level);
     	}
         enemyLevelThree = new EnemyPack(program, this, 3);
     }
@@ -96,7 +94,6 @@ public class MainGame extends GraphicsPane implements KeyListener, ActionListene
             return;
         }
         player.update();
-<<<<<<< HEAD
         Iterator<Projectile> iter = bullets.iterator();
         while(iter.hasNext()) {
         	Projectile temp = iter.next();
@@ -111,15 +108,6 @@ public class MainGame extends GraphicsPane implements KeyListener, ActionListene
         		
         	}
         }
-=======
-        /*Iterator<Shots> iter = bullets.iterator();
-        while(iter.hasNext()) {
-        	Shots temp = iter.next();
-        	temp.update();
-        	if(Collision(temp.getImage().getBounds(),))
-        }*/
-        
->>>>>>> branch 'main' of https://github.com/Fall2021-COMP55-1/groupproject-team-2.git
     }
 
 	@Override
