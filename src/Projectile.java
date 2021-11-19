@@ -33,7 +33,7 @@ public class Projectile {
     }
 
 
-	public void remove() {
+	public void hide() {
 		// TODO Auto-generated method stub
 		
 	}
