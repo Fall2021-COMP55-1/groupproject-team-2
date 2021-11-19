@@ -36,17 +36,12 @@ public class Projectile {
       return this.velocity;
     }
 
-<<<<<<< HEAD
+
     public void update() {
     	
     }
     
 	public void remove() {
-=======
-
-	public void hide() {
->>>>>>> branch 'main' of https://github.com/Fall2021-COMP55-1/groupproject-team-2.git
-		// TODO Auto-generated method stub
 		
 	}
 

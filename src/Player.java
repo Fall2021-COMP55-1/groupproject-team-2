@@ -186,27 +186,6 @@ public class Player {
 		ship.setLocation(this.x, this.y);
 	}
 
-<<<<<<< HEAD
-	public boolean hasCollidedPS(Projectile shot) {
-		// TODO Auto-generated method stub
-		System.out.println("Shot coord" + shot.getXPos() + " " + shot.getYPos());
-		if(shot.getYPos() < 0) {
-			System.out.println("Colliding");
-			return true;
-		}
-		return false;
-	}
-	
-	public boolean hasCollidedMS(Projectile shot) {	
-		// TODO Auto-generated method stub
-		System.out.println("Shot coord" + shot.getXPos() + " " + shot.getYPos());
-		if(shot.getYPos() < 0) {
-			System.out.println("Colliding");
-			return true;
-		}
-		return false;
-	}
-
 	public void takedamage() {
 		// TODO Auto-generated method stub
 		
@@ -216,6 +195,4 @@ public class Player {
 		// TODO Auto-generated method stub
 		return ship.getBounds();
 	}
-=======
->>>>>>> branch 'main' of https://github.com/Fall2021-COMP55-1/groupproject-team-2.git
 }

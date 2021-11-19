@@ -96,8 +96,8 @@ public class MainGame extends GraphicsPane implements KeyListener, ActionListene
             return;
         }
         player.update();
-<<<<<<< HEAD
-        Iterator<Projectile> iter = bullets.iterator();
+
+       /* Iterator<Projectile> iter = bullets.iterator();
         while(iter.hasNext()) {
         	Projectile temp = iter.next();
         	temp.update();
@@ -110,16 +110,8 @@ public class MainGame extends GraphicsPane implements KeyListener, ActionListene
         	else if(temp.getY() < 0 || temp.getY() > 600) {
         		
         	}
-        }
-=======
-        /*Iterator<Shots> iter = bullets.iterator();
-        while(iter.hasNext()) {
-        	Shots temp = iter.next();
-        	temp.update();
-        	if(Collision(temp.getImage().getBounds(),))
         }*/
-        
->>>>>>> branch 'main' of https://github.com/Fall2021-COMP55-1/groupproject-team-2.git
+
     }
 
 	@Override
