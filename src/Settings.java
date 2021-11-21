@@ -26,16 +26,16 @@ public class Settings extends GraphicsPane {
     private GImage mText;
     private GImage sText;
     private GImage bButton;
-    
     private GRect temp;
     private GRect temp1;
-    
+    private GRect temp2;
+    private GRect temp3;
+    private GRect temp4;
     private GImage sBox1;
     private GImage sBox2;
     private GImage sBox3;
     private GImage sBox4;
     private GImage sBox5;
-    private GImage sBoxFilled;
     private GImage eText;
     private GImage nText;
     private GImage hText;
@@ -44,15 +44,9 @@ public class Settings extends GraphicsPane {
 
     public Settings(MainApplication app) {
         super();
-
         String filename = "src/Images/cloud.gif";
         background = new GImage(filename, 0,0);
-        program = app;
-        
-        sBoxFilled = new GImage("src/Images/selectionBoxFilled.png", 340, 135);
-        sBoxFilled = new GImage("src/Images/selectionBoxFilled.png", 450, 135);
-        sBoxFilled = new GImage("src/Images/selectionBoxFilled.png", 560, 135);
-        
+        program = app;  
         settingsTitle = new GImage("src/Images/settings Title.png", -50, 0);
         settingsTitle.sendToFront();
         difficultyLevelBox = new GImage("src/Images/difficultyLevelBox.png", -73, 80);
@@ -74,21 +68,27 @@ public class Settings extends GraphicsPane {
         bButton = new GImage("src/Images/bButton.png", 265, 478);
         bButton.sendToFront();
         sBox1 = new GImage("src/Images/selectionBox.png", 340, 135);
-        sBox1.sendToFront();
-        
         temp = new GRect(370, 143, 30, 30);
         temp.setFillColor(Color.RED);
+        temp.setFilled(true);
+        temp.sendToFront();
         temp1 = new GRect(480, 143, 30, 30);
         temp1.setFillColor(Color.RED);
-        
+        temp1.sendToFront();
+        temp2 = new GRect(590, 143, 30, 30);
+        temp2.setFillColor(Color.RED);
+        temp2.sendToFront();
+        temp3 = new GRect(369, 229, 30, 30);
+        temp3.setFillColor(Color.RED);
+        temp3.sendToFront();
+        temp4 = new GRect(479, 229, 30, 30);
+        temp4.setFillColor(Color.RED);
+        temp4.sendToFront();
+        temp4.setFilled(true);
         sBox2 = new GImage("src/Images/selectionBox.png", 450, 135);
-        sBox2.sendToFront();
         sBox3 = new GImage("src/Images/selectionBox.png", 560, 135);
-        sBox3.sendToFront();
         sBox4 = new GImage("src/Images/selectionBox.png", 340, 220);
-        sBox4.sendToFront();
-        sBox5 = new GImage("src/Images/selectionBox.png", 450, 220);
-        sBox5.sendToFront();
+        sBox5 = new GImage("src/Images/selectionBox.png", 450, 220);       
         eText = new GImage("src/Images/easytext.png", 235, 50);
         eText.sendToFront();
         nText = new GImage("src/Images/normalText.png", 345, 50);
@@ -125,9 +125,11 @@ public class Settings extends GraphicsPane {
         program.add(hText);
         program.add(onText);
         program.add(offText);
-        
         program.add(temp);
         program.add(temp1);
+        program.add(temp2);
+        program.add(temp3);
+        program.add(temp4);
     }
 
     @Override
@@ -153,9 +155,11 @@ public class Settings extends GraphicsPane {
         program.remove(hText);
         program.remove(onText);
         program.remove(offText);
-        
         program.remove(temp);
         program.remove(temp1);
+        program.remove(temp2);
+        program.remove(temp3);
+        program.remove(temp4);
     }
 
     @Override
@@ -167,42 +171,29 @@ public class Settings extends GraphicsPane {
         if (obj == settings) {
         	program.switchToSettings();
         }
-        if (obj == temp || obj == temp1 || obj == sBoxFilled) {
-        	System.out.println("Clicked on box");
-        	if (isOn) {
-        		isOn = false;
-        		program.remove(sBoxFilled);
-        		temp.setFilled(false);
-        		System.out.println("Remove filled");
-        	}
-        	else {
-        		isOn = true;
-        		program.add(sBoxFilled);
-        		temp.setFilled(true);
-        		System.out.println("Add filled");
-        	}
+        if(obj == temp) {
+        	temp.setFilled(true);
+        	temp1.setFilled(false);
+        	temp2.setFilled(false);
         }
-        
-        /*
-        if (obj == sBox1) {
-        	if (isOn) {
-        		isOn = false;
-        		program.remove(sBox1);
-        	}
-        	else {
-        		isOn = true;
-        		program.add(sBoxFilled);
-        	}
-        }8?
-        /*if(obj == textbox) {
-
-            text.setFont("Courier");
-            text.sendToFront();
-            program.add(text);
-            textline = new GLine(800/2-150/2, 600*2/3-50, 800/2-150/2, 600*2/3-50+37);
-            textline.sendToFront();
-            program.add(textline);
-        }*/
+    	if (obj == temp1) {
+    		temp.setFilled(false);
+        	temp1.setFilled(true);
+        	temp2.setFilled(false);
+            }
+    	if (obj == temp2) {
+    		temp.setFilled(false);
+        	temp1.setFilled(false);
+        	temp2.setFilled(true);
+            } 
+    	if (obj == temp3) {
+    		temp3.setFilled(true);
+        	temp4.setFilled(false);
+    	}
+    	if (obj == temp4) {
+    		temp4.setFilled(true);
+        	temp3.setFilled(false);
+    	}
     }
 
     public void actionPerformed(ActionEvent e) {
