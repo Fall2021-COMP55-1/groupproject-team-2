@@ -35,14 +35,16 @@ public class Player {
 
     public Projectile shoot(PowerType p){
     	System.out.println("Shooting");
-    	p = PowerType.NONE;
         Projectile shot = null; 
         if(p == PowerType.NONE || p == null || p == PowerType.POWERSHOT) {
+        	//Returning Power or None Shot Class
         	shot = new PowerNoneShot(p, ship.getX() + ship.getWidth()/2 - 32, ship.getY() - 2*ship.getHeight() - ship.getHeight() - 5, program);
         	p = PowerType.NONE;
         } else if(p == PowerType.DOUBLESHOT) {
+        	//Returning DoubleShotClass
         	shot = new DoubleShot(p, ship.getX() + ship.getWidth()/2 - 32, ship.getY() - 2*ship.getHeight() - ship.getHeight() - 5, program);
         } else if(p == PowerType.TRIPLESHOT) {
+        	//Returning TripleShot Class
         	shot = new TripleShot(p, ship.getX() + ship.getWidth()/2 - 32, ship.getY() - 2*ship.getHeight() - ship.getHeight() - 5, program);
         }
         return shot;
@@ -195,4 +197,5 @@ public class Player {
 		// TODO Auto-generated method stub
 		return ship.getBounds();
 	}
+
 }

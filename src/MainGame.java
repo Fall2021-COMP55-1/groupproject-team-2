@@ -23,7 +23,10 @@ public class MainGame extends GraphicsPane implements KeyListener, ActionListene
     Player player;
     private MainApplication program; 
     boolean paused = false;
+    private EnemyPack enemyLevelOne;
+    private EnemyPack enemyLevelTwo;
     private EnemyPack enemyLevelThree;
+    private EnemyPack enemyLevelFour;
 	private int level;
     
     public MainGame(MainApplication app) {
@@ -40,7 +43,7 @@ public class MainGame extends GraphicsPane implements KeyListener, ActionListene
     public void playGame() {
         //keys = new KeyHandler();
         //enemies = new ArrayList <Enemy>();
-    	int level = 3;
+    	level = 1;
     	if(enemyLevelThree == null) {
     		level++;
     		//TODO:
@@ -94,9 +97,7 @@ public class MainGame extends GraphicsPane implements KeyListener, ActionListene
             return;
         }
         player.update();
-
-
-       /* Iterator<Projectile> iter = bullets.iterator();
+        /*Iterator<Shots> iter = bullets.iterator();
         while(iter.hasNext()) {
         	Projectile temp = iter.next();
         	temp.update();
@@ -110,7 +111,6 @@ public class MainGame extends GraphicsPane implements KeyListener, ActionListene
         		
         	}
         }*/
-
     }
 
 	@Override
@@ -133,27 +133,15 @@ public class MainGame extends GraphicsPane implements KeyListener, ActionListene
             }
             if(key == KeyEvent.VK_SPACE) {
                 bullets.add(player.shoot(player.getPower()));
-        /*        if(player.getPower() == PowerType.POWERSHOT) {
-                    
-                    System.out.println("Deleting");
-                    boolean collided = player.hasCollidedPS(shot);
-                    if(collided)
-                        player.delete(shot);
-                } else {
-                    System.out.println("Deleting");
-                    boolean collided = player.hasCollidedMS(shot);
-                    if(collided)
-                        player.delete(shot);
-                }*/
             }
         }
          if(key == KeyEvent.VK_ESCAPE) {
             if(paused) {
                 paused = false;
-                program.switchToSettings();
             }
             else
                 paused = true;
+            	program.switchToSettings();
         }
     }
 

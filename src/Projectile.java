@@ -6,13 +6,14 @@ public class Projectile {
     double yPos;
     int velocity;
     GImage ship;
-    
+
 
     public Projectile(double d, double e) {
-    	xPos = d;
-    	yPos = e;
+        xPos = d;
+        yPos = e;
+        ship = new GImage("src/Bullets/Rotated Shot.png", d, e);
     }
-    
+
 
     //Setters for the class
     public void setXPos(int xPos) {
@@ -37,29 +38,26 @@ public class Projectile {
     }
 
     public void update() {
-    	
+
     }
-    
-	public void remove() {
-		
-	}
 
-	public void hide() {
-		// TODO Auto-generated method stub	
-	}
+    public void remove() {
 
+    }
 
-	public GObject getImage() {
-		// TODO Auto-generated method stub
-		return ship;
-	}
+    public void hide() {
+        // TODO Auto-generated method stub
+
+    }
 
 
+    public GObject getImage() {
+        // TODO Auto-generated method stub
+        return ship;
+    }
 
-
-
-	public double getY() {
-		// TODO Auto-generated method stub
-		return ship.getY();
-	}
+    public double getY() {
+        // TODO Auto-generated method stub
+        return ship.getY();
+    }
 }
