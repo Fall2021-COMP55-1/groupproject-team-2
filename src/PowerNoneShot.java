@@ -7,33 +7,29 @@ import acm.graphics.GImage;
 
 public class PowerNoneShot extends Projectile implements ActionListener {
     //fields
-    private GImage ps;
-    private MainApplication program;
     private PowerType pt;
-    private Timer timer;
     // Constructor
     public PowerNoneShot(PowerType pt, double d, double e, MainApplication ma) {
-        super(d, e);
-        program = ma;
+        super(ma, d+48, e);
         this.pt = pt;
-        timer = new Timer(1, this);
         // TODO Auto-generated constructor stub
         if(pt == PowerType.POWERSHOT) {
-            ps = new GImage("src/Bullets/Rotated Power.png", d-48, e-48);
-            ps.sendToFront();
-            ps.setSize(64,64);
-            program.add(ps);
+            ship = new GImage("src/Bullets/Rotated Power.png", d-48, e-48);
+            ship.sendToFront();
         } else if(pt == PowerType.NONE || pt == null){
-            ps = new GImage("src/Bullets/Rotated SHOT.png", d-48, e-48);
-            ps.sendToFront();
-            ps.setSize(64,64);
-            program.add(ps);
+            ship = new GImage("src/Bullets/Rotated SHOT.png", d-48, e-48);
+            ship.sendToFront();
+
         }
+        System.out.println("PS Coords: " + xPos);
+        System.out.println("Bullet creation:" + ship.getX() + " " + ship.getY());
+        ship.setSize(64,64);
+        System.out.println("Bullet creation:" + ship.getX() + " " + ship.getY());
+        ma.add(ship);
 
 
-
-        ps.sendToFront();
-        timer.start();
+        ship.sendToFront();
+        up = true;
 
     }
 
@@ -42,12 +38,10 @@ public class PowerNoneShot extends Projectile implements ActionListener {
             timer.stop();
             System.out.println("PS Final coords: " + xPos + ", " + yPos);
         }
-            ps.setLocation(xPos, yPos--);
+            ship.setLocation(xPos, yPos--);
+            System.out.println("PS Coords: " + xPos);
     }
 
-    public void remove() {
-        program.remove(ps);
-    }
 
     public PowerType shoot() {
         return pt;

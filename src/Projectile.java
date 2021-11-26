@@ -1,17 +1,28 @@
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.Timer;
+
 import acm.graphics.GImage;
 import acm.graphics.GObject;
 
-public class Projectile {
+public class Projectile implements ActionListener {
     double xPos;
     double yPos;
     int velocity;
     GImage ship;
+    protected MainApplication program;
+    protected Timer timer;
+	protected boolean paused;
+	protected boolean up;
 
-
-    public Projectile(double d, double e) {
+    public Projectile(MainApplication app, double d, double e) {
+    	program = app;
         xPos = d;
         yPos = e;
         ship = new GImage("src/Bullets/Rotated Shot.png", d, e);
+        timer = new Timer(1, this);
+        timer.start();
     }
 
 
@@ -42,12 +53,12 @@ public class Projectile {
     }
 
     public void remove() {
-
+    	program.remove(ship);
     }
 
     public void hide() {
         // TODO Auto-generated method stub
-
+    	ship.setVisible(false);
     }
 
 
@@ -60,4 +71,25 @@ public class Projectile {
         // TODO Auto-generated method stub
         return ship.getY();
     }
+
+
+	public void pause() {
+		// TODO Auto-generated method stub
+		System.out.println("Projectile paused");
+		timer.stop();
+		paused = true;
+	}
+
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+        if(yPos < 0) {
+            timer.stop();
+            System.out.println("PS Final coords: " + xPos + ", " + yPos);
+        } else if(!paused) {
+            ship.setLocation(xPos, yPos--);
+            System.out.println("PS Coords: " + xPos);
+        }
+	}
 }

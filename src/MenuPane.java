@@ -25,6 +25,7 @@ public class MenuPane extends GraphicsPane {
     private String username = " ";
     private GImage settings;
     private GImage leaderboard;
+    private GraphicsPane last;
 
     public MenuPane(MainApplication app) {
         super();
@@ -43,7 +44,7 @@ public class MenuPane extends GraphicsPane {
         button.sendToFront();
         textbox = new GRect(800/2-150/2, 600*2/3-50, 150,37);
         textbox.sendToFront();
-        text = new GLabel(username, 800/2-150/2, 600*2/3-50);
+        text = new GLabel(username, 810/2-150/2, 640*2/3-50);
 
     }
 
@@ -73,13 +74,13 @@ public class MenuPane extends GraphicsPane {
     public void mousePressed(MouseEvent e) {
         GObject obj = program.getElementAt(e.getX(), e.getY());
         if (obj == button) {
-
+        	program.switchToGame();
         }
         if (obj == leaderboard) {
             	program.switchToLeaderboard();
             }
         if (obj == settings) {
-        	program.switchToSettings();
+        	program.switchToSettings(last);
         }
         if (obj == transition) {
         	program.switchToTransition();

@@ -113,7 +113,7 @@ public class MainApplication extends GraphicsProgram {
 		leaderboard = new Leaderboard(this);
 		settings = new Settings(this);
 		transition = new TransitionPane(this);
-		game = new MainGame(this);
+		game = new MainGame(menu.getUsername(), this);
 		setupInteractions();
 		switchToWelcome();
 	}
@@ -130,8 +130,9 @@ public class MainApplication extends GraphicsProgram {
 		new MainApplication().start();
 	}
 
-	public void switchToSettings() {
-		switchToScreen(settings);	
+	public void switchToSettings(GraphicsPane last) {
+		switchToScreen(settings);
+		settings.last = last;
 	}
 	
 	public void switchToLeaderboard() {

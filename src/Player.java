@@ -8,6 +8,7 @@ import acm.graphics.GRectangle;
 public class Player {
 	
 	private MainApplication program;
+	private String username;
     private MainGame game;
     private long score;
     private int health;
@@ -22,6 +23,7 @@ public class Player {
     
 
     public Player(String un, MainApplication ma, MainGame gam){
+    	username = un;
     	program = ma;
         score = 0;
         health = 100;
@@ -38,7 +40,7 @@ public class Player {
         Projectile shot = null; 
         if(p == PowerType.NONE || p == null || p == PowerType.POWERSHOT) {
         	//Returning Power or None Shot Class
-        	shot = new PowerNoneShot(p, ship.getX() + ship.getWidth()/2 - 32, ship.getY() - 2*ship.getHeight() - ship.getHeight() - 5, program);
+        	shot = new PowerNoneShot(p, ship.getX()-ship.getWidth()/2, ship.getY()-ship.getHeight() , program);
         	p = PowerType.NONE;
         } else if(p == PowerType.DOUBLESHOT) {
         	//Returning DoubleShotClass
@@ -190,12 +192,24 @@ public class Player {
 
 	public void takedamage() {
 		// TODO Auto-generated method stub
-		
+		health -= 50;
+		if(health == 0) {
+			health = 100;
+		}
+		lives--;
+		if(lives == 0) {
+			//send to end game screen
+		}
 	}
 
 	public GRectangle getBounds() {
 		// TODO Auto-generated method stub
 		return ship.getBounds();
+	}
+
+	public String getUserName() {
+		// TODO Auto-generated method stub
+		return username;
 	}
 
 }

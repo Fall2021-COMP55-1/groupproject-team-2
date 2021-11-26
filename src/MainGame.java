@@ -23,33 +23,33 @@ public class MainGame extends GraphicsPane implements KeyListener, ActionListene
     Player player;
     private MainApplication program; 
     boolean paused = false;
-    private EnemyPack enemyLevelOne;
-    private EnemyPack enemyLevelTwo;
-    private EnemyPack enemyLevelThree;
-    private EnemyPack enemyLevelFour;
-	private int level;
+    private EnemyPack enemy;
+    private Boss b;
     
-    public MainGame(MainApplication app) {
+    private GImage tempE;
+    private GRect shield1;
+    private GRect shield2;
+    private GRect shield3;
+	private int level;
+    private int difficulty;
+    public MainGame(String username,MainApplication app) {
         super();
         program = app;
         bullets = new ArrayList <Projectile>();
-        //playerSprite = new GImage("/COMP55GroupProject/src/Bullets/Android Logo.png", 300, 300);
-        player = new Player("test", program, this);
-        background = new GImage("src/Images/bg.png", 0,0);
-        
+        player = new Player(username, program, this);
+        System.out.println(player.getUserName());
+        background = new GImage("src/Images/bg2.gif", 0,0);
+        background.sendToBack();
+    	level = 1;
+    	b = new Boss(program, this);
+    	tempE = new GImage("src/Images/shot_apple.png", 50, 50);
     }
     
     
     public void playGame() {
-        //keys = new KeyHandler();
-        //enemies = new ArrayList <Enemy>();
-    	level = 1;
-    	if(enemyLevelThree == null) {
-    		level++;
-    		//TODO:
-    		//program.switchToTransition(level);
+    	if(level < 5) {
+    		enemy = new EnemyPack(level, difficulty, program);
     	}
-        enemyLevelThree = new EnemyPack(program, this, 3);
     }
     
     public void updatePlayer() {
@@ -78,6 +78,8 @@ public class MainGame extends GraphicsPane implements KeyListener, ActionListene
         // TODO Auto-generated method stub
         program.add(background);
         player.show();
+        b.show();
+        program.add(tempE);
         timer = new Timer(10, this);
         timer.start();
     }
@@ -97,6 +99,12 @@ public class MainGame extends GraphicsPane implements KeyListener, ActionListene
             return;
         }
         player.update();
+        for(Projectile p : bullets) {
+        	p.update();
+        	if(p.getY() < 0) {
+        		p.hide();
+        	}
+        }
         /*Iterator<Shots> iter = bullets.iterator();
         while(iter.hasNext()) {
         	Projectile temp = iter.next();
@@ -133,6 +141,7 @@ public class MainGame extends GraphicsPane implements KeyListener, ActionListene
             }
             if(key == KeyEvent.VK_SPACE) {
                 bullets.add(player.shoot(player.getPower()));
+                System.out.println(player.getUserName());
             }
         }
          if(key == KeyEvent.VK_ESCAPE) {
@@ -141,7 +150,11 @@ public class MainGame extends GraphicsPane implements KeyListener, ActionListene
             }
             else
                 paused = true;
-            	program.switchToSettings();
+            	for(Projectile p : bullets) {
+            		p.pause();
+            	}
+            	program.switchToSettings(this);
+            	
         }
     }
 

@@ -41,6 +41,7 @@ public class Settings extends GraphicsPane {
     private GImage hText;
     private GImage offText;
     private GImage onText;
+	public GraphicsPane last;
 
     public Settings(MainApplication app) {
         super();
@@ -169,7 +170,7 @@ public class Settings extends GraphicsPane {
         	program.switchToMenu();
         }
         if (obj == settings) {
-        	program.switchToSettings();
+        	program.switchToSettings(last);
         }
         if(obj == temp) {
         	temp.setFilled(true);
@@ -200,21 +201,15 @@ public class Settings extends GraphicsPane {
 
     }
 
-    /*public void keyPressed(KeyEvent e) {
-    	if(e.getKeyChar() == KeyEvent.VK_ENTER && username != "") {
-    		//program.switchToGame();
-    		program.switchToSettings();
+    public void keyPressed(KeyEvent e) {
+    	if(e.getKeyChar() == KeyEvent.VK_ESCAPE) {
+    		if(last instanceof MainGame) {
+    			program.switchToGame();
+    		} else if(last instanceof MenuPane) {
+    			program.switchToMenu();
+    		} else {
+    			program.switchToMenu();
+    		}
     	}
-        if(e.getKeyChar() != KeyEvent.VK_BACK_SPACE) {
-            username+= e.getKeyChar();
-            text.setLabel(username);
-        } else
-            if(username.length() > 1) {
-                username = username.substring(0,username.length()-2);
-                text.setLabel(username);
-            } else {
-                username = "";
-        		text.setLabel(username);
-            }
-    }*/
+	}
 }

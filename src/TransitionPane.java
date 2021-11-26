@@ -51,7 +51,10 @@ public class TransitionPane extends GraphicsPane {
 
     @Override
     public void mousePressed(MouseEvent e) {
-        
+        GObject obj = program.getElementAt(e.getX(), e.getY());
+        if(obj == button) {
+        	program.switchToGame();
+        }
     }
 
     public void actionPerformed(ActionEvent e) {
