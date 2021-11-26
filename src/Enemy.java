@@ -12,6 +12,11 @@ public class Enemy {
 	    health = 20;
 	}
 	
+	public Enemy(int x, int y, MainApplication app, int ran) {
+		// TODO Auto-generated constructor stub
+		//ran is random powerup, use ifs and elses for it
+	}
+
 	public void draw(int x, int y) {
 		enemy = new GImage("", x, y);
 		program.add(enemy);

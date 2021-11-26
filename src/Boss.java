@@ -3,7 +3,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.Timer;
 import acm.graphics.GImage;
-
+@SuppressWarnings("unused")
 public class Boss implements ActionListener{
 
   
@@ -50,6 +50,11 @@ public class Boss implements ActionListener{
 	public void show() {
 		// TODO Auto-generated method stub
 		program.add(boss);
+	}
+
+	public void hide() {
+		// TODO Auto-generated method stub
+		program.remove(boss);
 	}
 
 }

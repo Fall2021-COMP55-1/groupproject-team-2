@@ -9,7 +9,7 @@ import acm.graphics.GRect;
 import acm.graphics.GLabel;
 import acm.graphics.GLine;
 import acm.graphics.GObject;
-
+@SuppressWarnings("unused")
 public class MenuPane extends GraphicsPane {
 
     // you will use program to get access to all of the GraphicsProgram calls

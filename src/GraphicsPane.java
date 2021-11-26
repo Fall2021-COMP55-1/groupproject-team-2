@@ -15,7 +15,7 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import acm.graphics.GImage;
-
+@SuppressWarnings("unused")
 public abstract class GraphicsPane implements Interfaceable {
 	
 	

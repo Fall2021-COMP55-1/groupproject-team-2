@@ -4,7 +4,7 @@ import acm.graphics.GImage;
 import acm.graphics.GLabel;
 import acm.graphics.GRectangle;
 
-
+@SuppressWarnings("unused")
 public class Player {
 	
 	private MainApplication program;
@@ -129,9 +129,9 @@ public class Player {
 			dx = 0;
 			ship.setLocation(800 - ship.getWidth(), ship.getY());
 		}
-		if(ship.getY()+dy < 0) {
+		if(ship.getY()+dy < 400) {
 			dy = 0;
-			ship.setLocation(ship.getX(), 0);
+			ship.setLocation(ship.getX(), 400);
 		}
 		if(ship.getY() + ship.getHeight() + dy > 600) {
 			dy = 0;

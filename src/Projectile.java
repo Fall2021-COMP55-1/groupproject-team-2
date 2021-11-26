@@ -5,7 +5,7 @@ import javax.swing.Timer;
 
 import acm.graphics.GImage;
 import acm.graphics.GObject;
-
+@SuppressWarnings("unused")
 public class Projectile implements ActionListener {
     double xPos;
     double yPos;
@@ -15,6 +15,7 @@ public class Projectile implements ActionListener {
     protected Timer timer;
 	protected boolean paused;
 	protected boolean up;
+	private boolean travelling;
 
     public Projectile(MainApplication app, double d, double e) {
     	program = app;
@@ -23,6 +24,8 @@ public class Projectile implements ActionListener {
         ship = new GImage("src/Bullets/Rotated Shot.png", d, e);
         timer = new Timer(1, this);
         timer.start();
+
+        travelling = true;
     }
 
 
@@ -54,6 +57,8 @@ public class Projectile implements ActionListener {
 
     public void remove() {
     	program.remove(ship);
+    	travelling = false;
+    	System.out.println("PS Final coords: " + xPos + ", " + yPos);
     }
 
     public void hide() {
@@ -78,13 +83,14 @@ public class Projectile implements ActionListener {
 		System.out.println("Projectile paused");
 		timer.stop();
 		paused = true;
+		
 	}
 
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-        if(yPos < 0) {
+        if(yPos < 0 || !travelling) {
             timer.stop();
             System.out.println("PS Final coords: " + xPos + ", " + yPos);
         } else if(!paused) {

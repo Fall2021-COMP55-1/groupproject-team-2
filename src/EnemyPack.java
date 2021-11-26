@@ -1,10 +1,11 @@
 import java.util.ArrayList;
 
 import acm.graphics.GRectangle;
-
+@SuppressWarnings("unused")
 public class EnemyPack {
 	 ArrayList <Enemy> enemies;
-	 private MainApplication program;
+
+	private MainApplication program;
 	 double min, max;
 	 private int y = 1;
 	

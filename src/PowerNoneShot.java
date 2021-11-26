@@ -4,7 +4,7 @@ import java.awt.event.ActionListener;
 import javax.swing.Timer;
 
 import acm.graphics.GImage; 
-
+@SuppressWarnings("unused")
 public class PowerNoneShot extends Projectile implements ActionListener {
     //fields
     private PowerType pt;

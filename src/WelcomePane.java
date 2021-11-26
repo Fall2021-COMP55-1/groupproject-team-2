@@ -1,12 +1,13 @@
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
 import javax.swing.Timer;
 
 import acm.graphics.GImage;
 import acm.graphics.GObject;
-
+@SuppressWarnings("unused")
 public class WelcomePane extends GraphicsPane {
 	
 	// you will use program to get access to all of the GraphicsProgram calls
@@ -50,5 +51,10 @@ public class WelcomePane extends GraphicsPane {
 		if (obj == button) {
 			program.switchToMenu();
 		}
+	}
+	
+	public void keyPressed(KeyEvent e) {
+		if(e.getKeyChar() == KeyEvent.VK_ENTER)
+			program.switchToMenu();
 	}
 }

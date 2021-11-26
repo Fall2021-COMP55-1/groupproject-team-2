@@ -10,7 +10,7 @@ import acm.graphics.GLabel;
 import acm.graphics.GLine;
 import acm.graphics.GObject;
 import java.awt.Graphics2D;
-
+@SuppressWarnings("unused")
 public class Settings extends GraphicsPane {
 	
 	private boolean isOn = false;

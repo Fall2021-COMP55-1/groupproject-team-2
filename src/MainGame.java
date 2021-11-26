@@ -10,7 +10,7 @@ import javax.swing.Timer;
 import acm.graphics.GImage;
 import acm.graphics.GRectangle;
 import acm.graphics.GRect;
-
+@SuppressWarnings("unused")
 public class MainGame extends GraphicsPane implements KeyListener, ActionListener{
     
     private Timer timer;
@@ -26,7 +26,8 @@ public class MainGame extends GraphicsPane implements KeyListener, ActionListene
     private EnemyPack enemy;
     private Boss b;
     
-    private GImage tempE;
+    private GImage tempE1;
+    private GImage tempE2;
     private GRect shield1;
     private GRect shield2;
     private GRect shield3;
@@ -42,7 +43,8 @@ public class MainGame extends GraphicsPane implements KeyListener, ActionListene
         background.sendToBack();
     	level = 1;
     	b = new Boss(program, this);
-    	tempE = new GImage("src/Images/shot_apple.png", 50, 50);
+    	tempE1 = new GImage("src/Images/power_apple.png", 50, 50);
+    	tempE2 = new GImage("src/Images/shot_apple.png", 100, 50);
     }
     
     
@@ -79,7 +81,8 @@ public class MainGame extends GraphicsPane implements KeyListener, ActionListene
         program.add(background);
         player.show();
         b.show();
-        program.add(tempE);
+        program.add(tempE1);
+        program.add(tempE2);
         timer = new Timer(10, this);
         timer.start();
     }
@@ -89,6 +92,7 @@ public class MainGame extends GraphicsPane implements KeyListener, ActionListene
         // TODO Auto-generated method stub
         program.remove(background);
         player.hide();
+        b.hide();
     }
 
 
@@ -99,10 +103,15 @@ public class MainGame extends GraphicsPane implements KeyListener, ActionListene
             return;
         }
         player.update();
-        for(Projectile p : bullets) {
-        	p.update();
-        	if(p.getY() < 0) {
-        		p.hide();
+
+        Iterator<Projectile> iter = bullets.iterator();
+        while(iter.hasNext()) {
+        	Projectile temp = iter.next();
+        	temp.update();
+        	if(rectCollision(temp.getImage().getBounds(), tempE1.getBounds()) || rectCollision(temp.getImage().getBounds(), tempE2.getBounds()) || temp.getY() < 0) {
+        		
+        		temp.hide();
+        		iter.remove();
         	}
         }
         /*Iterator<Shots> iter = bullets.iterator();
