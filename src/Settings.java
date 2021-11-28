@@ -3,6 +3,9 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JTextField;
 import acm.graphics.GImage;
 import acm.graphics.GRect;
@@ -10,9 +13,13 @@ import acm.graphics.GLabel;
 import acm.graphics.GLine;
 import acm.graphics.GObject;
 import java.awt.Graphics2D;
+
+
+
 @SuppressWarnings("unused")
 public class Settings extends GraphicsPane {
 	
+	private MusicPlayer mp;
 	private boolean isOn = false;
     private MainApplication program; 
     private GImage background;
@@ -101,6 +108,15 @@ public class Settings extends GraphicsPane {
         offText = new GImage("src/Images/offText.png", 345, 135);
         offText.sendToFront();
         
+        /*
+        try {
+   		 mp = new MusicPlayer();
+   		 System.out.println("Music Player created");
+	   	}
+	   	catch(Exception ex) {
+	   		System.out.println("Error with playing music");
+	   	}*/
+	   	
     }
 
     @Override
@@ -166,6 +182,9 @@ public class Settings extends GraphicsPane {
     @Override
     public void mousePressed(MouseEvent e) {
         GObject obj = program.getElementAt(e.getX(), e.getY());
+        
+        
+        
         if (obj == bButton) {
         	program.switchToMenu();
         }
@@ -189,11 +208,18 @@ public class Settings extends GraphicsPane {
             } 
     	if (obj == temp3) {
     		temp3.setFilled(true);
-        	temp4.setFilled(false);
+        	temp4.setFilled(false);	
+        	//mp.play();
     	}
     	if (obj == temp4) {
     		temp4.setFilled(true);
         	temp3.setFilled(false);
+        	/*try {
+				mp.stop();
+			} catch (Exception ex) {
+				// TODO Auto-generated catch block
+				ex.printStackTrace();
+			}*/
     	}
     }
 
