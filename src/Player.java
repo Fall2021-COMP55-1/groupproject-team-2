@@ -212,4 +212,9 @@ public class Player {
 		return username;
 	}
 
+	public long getScore() {
+		// TODO Auto-generated method stub
+		return score;
+	}
+
 }

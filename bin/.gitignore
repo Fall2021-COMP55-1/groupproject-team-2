@@ -15,6 +15,7 @@
 /MainApplication.class
 /MainGame.class
 /MenuPane.class
+/MusicPlayer.class
 /Player.class
 /PowerNoneShot.class
 /PowerType.class
@@ -24,4 +25,4 @@
 /TransitionPane.class
 /TripleShot.class
 /WelcomePane.class
-/MusicPlayer.class
+/WLPane.class

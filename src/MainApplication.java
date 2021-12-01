@@ -15,6 +15,7 @@ public class MainApplication extends GraphicsProgram {
 	private Leaderboard leaderboard;
 	private TransitionPane transition;
 	private MainGame game;
+	private WLPane winLosePane;
 	
 	/* Method: setupInteractions
 	 * -------------------------
@@ -113,6 +114,7 @@ public class MainApplication extends GraphicsProgram {
 		leaderboard = new Leaderboard(this);
 		settings = new Settings(this);
 		transition = new TransitionPane(this);
+		winLosePane = new WLPane(this);
 		game = new MainGame(menu.getUsername(), this);
 		setupInteractions();
 		switchToWelcome();
@@ -142,5 +144,9 @@ public class MainApplication extends GraphicsProgram {
 	
 	public void switchToTransition() {
 		switchToScreen(transition);	
+	}
+	
+	public void switchToWLPane() {
+		switchToScreen(winLosePane);	
 	}
 }

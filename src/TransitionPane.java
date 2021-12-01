@@ -20,26 +20,47 @@ public class TransitionPane extends GraphicsPane {
     private GLabel text2;
     private GLabel text3;
     private GImage button;
-    int playerScore; 
+    private GImage transitionImage;
+    long playerScore;
     int playerHealth;
     
-    public TransitionPane(MainApplication app) {
+    public TransitionPane(MainApplication app, Player player) {
         super();
+        
+        transitionImage = new GImage("src/Images/TransitionImage.jpg");
+        transitionImage.sendToBack();
         program = app;
+        
+        if (player != null) {
+        	playerScore = player.getScore();
+            playerHealth = player.getHealth();
+        }
+        else {
+        	playerScore = 0;
+        	playerHealth = 100;
+        }
+        
+        
+        
         text = new GLabel("Level Finished, Congratulations!", 300, 250);
         text2 = new GLabel("Current Score: " + playerScore, 300, 300);
         text3 = new GLabel("Player Health:" + playerHealth, 300, 350);
         button = new GImage("src/Images/continue button.png", program.getWidth()/2-59, program.getHeight()*4/5);
+        text.setColor(Color.white);
+        text2.setColor(Color.white);
+        text3.setColor(Color.white);
         
-     
+        //added larger and white font
     }
 
     @Override
     public void showContents() {
+    	program.add(transitionImage);
         program.add(text);
         program.add(text2);
         program.add(text3);
         program.add(button);
+        
     }
 
     @Override
@@ -47,14 +68,12 @@ public class TransitionPane extends GraphicsPane {
         program.remove(text);
         program.remove(text2);
         program.remove(button);
+        program.remove(transitionImage);
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
-        GObject obj = program.getElementAt(e.getX(), e.getY());
-        if(obj == button) {
-        	program.switchToGame();
-        }
+        
     }
 
     public void actionPerformed(ActionEvent e) {

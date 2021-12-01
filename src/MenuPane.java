@@ -19,6 +19,8 @@ public class MenuPane extends GraphicsPane {
     private GImage title;
     private GImage button;
     private GImage transition;
+    private GImage WL1;
+    private GImage WL2;
     private GRect textbox;
     private GLabel text;
     private GLine textline;
