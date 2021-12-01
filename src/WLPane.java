@@ -16,7 +16,7 @@ public class WLPane extends GraphicsPane {
     // you will use program to get access to all of the GraphicsProgram calls
     private MainApplication program; 
 
-
+    
     private GLabel lose;
     private GLabel win;
     private GImage button;
@@ -32,6 +32,8 @@ public class WLPane extends GraphicsPane {
     	loseImage.sendToBack();
     	program = app;
     	
+    	lose = new GLabel("YOU LOST", 300, 250);
+    	win = new GLabel("YOU WON", 300, 350);
 
         button = new GImage("src/Images/continue button.png", program.getWidth()/2-59, program.getHeight()*4/5);
     }
@@ -40,16 +42,18 @@ public class WLPane extends GraphicsPane {
     public void showContents() {
     	program.add(loseImage);
         program.add(winImage);
+        program.add(lose);
+        program.add(win);
         program.add(button);
         
     }
 
     @Override
     public void hideContents() {
-        program.remove(text);
-        program.remove(text2);
+        program.remove(lose);
+        program.remove(win);
         program.remove(button);
-        program.remove(transitionImage);
+        program.remove(loseImage);
     }
 
     @Override
