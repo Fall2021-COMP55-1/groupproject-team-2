@@ -73,7 +73,13 @@ public class TransitionPane extends GraphicsPane {
 
     @Override
     public void mousePressed(MouseEvent e) {
-        
+    	 GObject obj = program.getElementAt(e.getX(), e.getY());
+         if (obj == button) {
+         	program.switchToMenu();
+         }
+         if (obj == transitionImage) {
+         	program.switchToLeaderboard();
+         }
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -82,7 +88,14 @@ public class TransitionPane extends GraphicsPane {
     
 
     public void keyPressed(KeyEvent e) {
-    	
+    	boolean isOn = false;
+        GObject obj = program.getElementAt(e.getX(), e.getY());
+        if (obj == button) {
+        	program.switchToMenu();
+        }
+        if (obj == transitionImage) {
+        	program.switchToLeaderboard();
+        }
                
     }
 
