@@ -3,6 +3,8 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+
 import javax.swing.JTextField;
 import acm.graphics.GImage;
 import acm.graphics.GRect;
@@ -22,6 +24,10 @@ public class Leaderboard extends GraphicsPane {
     private String username = " ";
     private GImage leaderboard;
     private GImage leaderboardImage;
+    private ArrayList <Record> records;
+    private GLabel leaderboardScores;
+    
+    
 
     public Leaderboard(MainApplication app) {
         super();
@@ -36,7 +42,15 @@ public class Leaderboard extends GraphicsPane {
         bButton = new GImage("src/Images/bButton.png", 265, 478);
         bButton.sendToFront();
         text = new GLabel(username, 800/2-150/2, 600*2/3-50);
-
+        
+        leaderboardScores = new GLabel("src/Scores.txt", 200, 0);
+        leaderboardScores.sendToFront();
+        
+        LeaderboardScores ls = new LeaderboardScores(program);
+        records = ls.getScores();
+        
+        //Iterator<Record>;
+        
     }
 
     @Override
@@ -45,6 +59,8 @@ public class Leaderboard extends GraphicsPane {
         program.add(bButton);
         program.add(leaderboard);
         program.add(leaderboardImage);
+        
+        program.add(leaderboardScores);
     }
 
     @Override
@@ -53,6 +69,8 @@ public class Leaderboard extends GraphicsPane {
         program.remove(bButton);
         program.remove(leaderboard);
         program.remove(leaderboardImage);
+        
+        program.remove(leaderboardScores);
     }
 
     @Override
@@ -64,15 +82,6 @@ public class Leaderboard extends GraphicsPane {
         if (obj == leaderboard) {
         	program.switchToLeaderboard();
         }
-        /*if(obj == textbox) {
-
-            text.setFont("Courier");
-            text.sendToFront();
-            program.add(text);
-            textline = new GLine(800/2-150/2, 600*2/3-50, 800/2-150/2, 600*2/3-50+37);
-            textline.sendToFront();
-            program.add(textline);
-        }*/
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -81,7 +90,7 @@ public class Leaderboard extends GraphicsPane {
 
     public void keyPressed(KeyEvent e) {
     	boolean isOn = false;
-        GObject obj = program.getElementAt(e.getX(), e.getY());
+        GObject obj = program.getElementAt(e.getID(), e.getID());
         if (obj == bButton) {
         	program.switchToMenu();
         }
@@ -89,20 +98,4 @@ public class Leaderboard extends GraphicsPane {
         	program.switchToLeaderboard();
         }
     }
-    	/*if(e.getKeyChar() == KeyEvent.VK_ENTER && username != "") {
-    		//program.switchToGame();
-    		program.switchToLeaderboard();
-    	}
-        if(e.getKeyChar() != KeyEvent.VK_BACK_SPACE) {
-            username+= e.getKeyChar();
-            text.setLabel(username);
-        } else
-            if(username.length() > 1) {
-                username = username.substring(0,username.length()-2);
-                text.setLabel(username);
-            } else {
-                username = "";
-        		text.setLabel(username);
-            }
-    }*/
 }
