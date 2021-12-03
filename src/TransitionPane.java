@@ -88,14 +88,7 @@ public class TransitionPane extends GraphicsPane {
     
 
     public void keyPressed(KeyEvent e) {
-    	boolean isOn = false;
-        GObject obj = program.getElementAt(e.getX(), e.getY());
-        if (obj == button) {
-        	program.switchToMenu();
-        }
-        if (obj == transitionImage) {
-        	program.switchToLeaderboard();
-        }
+    	
                
     }
 

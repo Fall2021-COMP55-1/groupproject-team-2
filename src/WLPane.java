@@ -59,12 +59,15 @@ public class WLPane extends GraphicsPane {
     public void showContents() {
     	if (winState) {
     		program.add(winImage);
+    		program.add(win);
+    		program.add(score);
     	} 
     	else {
     		program.add(loseImage);
+    		program.add(lose);
+    		program.add(score);
     	}
-        program.add(lose);
-        program.add(win);
+        
         program.add(button);
         
     }
@@ -97,8 +100,9 @@ public class WLPane extends GraphicsPane {
 
 	public void setPlayer(Player player) {
 		this.player = player;
-		score = new GLabel("Score: " + player.getScore(), 300, 360);
-		program.add(score);
+		score = new GLabel("Score: " + player.getScore(), 300, 355);
+		score.setColor(Color.white);
+		
 		
 	}
 

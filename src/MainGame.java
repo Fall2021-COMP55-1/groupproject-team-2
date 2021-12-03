@@ -117,7 +117,7 @@ public class MainGame extends GraphicsPane implements KeyListener, ActionListene
         }
         if(player.getHealth() < 10 ) {
         	lost = true;
-        	program.add(lose);
+        	program.switchToWLPane();
         }
         player.update();
         if(lastShot != 0) {
