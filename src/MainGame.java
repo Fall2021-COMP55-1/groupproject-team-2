@@ -8,6 +8,7 @@ import java.util.Iterator;
 
 import javax.swing.Timer;
 import acm.graphics.GImage;
+import acm.graphics.GLabel;
 import acm.graphics.GRectangle;
 import acm.graphics.GRect;
 @SuppressWarnings("unused")
@@ -25,12 +26,21 @@ public class MainGame extends GraphicsPane implements KeyListener, ActionListene
     boolean paused = false;
     private EnemyPack enemy;
     private Boss b;
-    
+    private GLabel scoreboard;
+    private int score;
+    private int shotCooldown = 50;
+    private int lastShot;
     private GImage tempE1;
     private GImage tempE2;
     private GRect shield1;
     private GRect shield2;
     private GRect shield3;
+    private GImage endGame;
+    private GImage lose;
+    private GLabel health;
+    private boolean gameOver; 
+    private boolean endScreen;
+    private boolean lost;
 	private int level;
     private int difficulty;
     public MainGame(String username,MainApplication app) {
@@ -42,16 +52,16 @@ public class MainGame extends GraphicsPane implements KeyListener, ActionListene
         background = new GImage("src/Images/bg2.gif", 0,0);
         background.sendToBack();
     	level = 1;
-    	b = new Boss(program, this);
-    	tempE1 = new GImage("src/Images/power_apple.png", 50, 50);
-    	tempE2 = new GImage("src/Images/shot_apple.png", 100, 50);
-    }
-    
-    
-    public void playGame() {
-    	if(level < 5) {
-    		enemy = new EnemyPack(level, difficulty, program);
-    	}
+    	enemy = new EnemyPack(program, this);
+    	score = 0;
+    	scoreboard = new GLabel("Score: " + score,720,560);
+    	endGame = new GImage("src/Images/win.png",0,0);
+    	gameOver = false;
+    	endScreen = false;
+    	lastShot = 0;
+    	lost = false;
+    	lose = new GImage("src/Images/lose.png",0,0);
+    	health = new GLabel("Health: " + player.getHealth(),720,540);
     }
     
     public void updatePlayer() {
@@ -79,10 +89,9 @@ public class MainGame extends GraphicsPane implements KeyListener, ActionListene
     public void showContents() {
         // TODO Auto-generated method stub
         program.add(background);
+        program.add(scoreboard);
+        program.add(health);
         player.show();
-        b.show();
-        program.add(tempE1);
-        program.add(tempE2);
         timer = new Timer(10, this);
         timer.start();
     }
@@ -92,28 +101,38 @@ public class MainGame extends GraphicsPane implements KeyListener, ActionListene
         // TODO Auto-generated method stub
         program.remove(background);
         player.hide();
-        b.hide();
+        program.remove(scoreboard);
+        if(endScreen) {
+        	program.remove(endGame);
+        }
     }
 
 
     @Override
     public void actionPerformed(ActionEvent e) {
         // TODO Auto-generated method stub
-        if(paused) {
+        if(paused || gameOver || lost) {
             return;
         }
+        if(player.getHealth() < 10 ) {
+        	lost = true;
+        	program.add(lose);
+        }
         player.update();
-
+        if(lastShot != 0) {
+        	lastShot -= 10;
+        }
         Iterator<Projectile> iter = bullets.iterator();
         while(iter.hasNext()) {
         	Projectile temp = iter.next();
         	temp.update();
-        	if(rectCollision(temp.getImage().getBounds(), tempE1.getBounds()) || rectCollision(temp.getImage().getBounds(), tempE2.getBounds()) || temp.getY() < 0) {
-        		
+        	if(enemy.checkCollision(temp.getImage().getBounds())) {	
         		temp.hide();
         		iter.remove();
         	}
         }
+        enemy.update();
+        health.setLabel("Health: " + player.getHealth());
         /*Iterator<Shots> iter = bullets.iterator();
         while(iter.hasNext()) {
         	Projectile temp = iter.next();
@@ -149,7 +168,10 @@ public class MainGame extends GraphicsPane implements KeyListener, ActionListene
                 player.updateVelocity(0,2);
             }
             if(key == KeyEvent.VK_SPACE) {
-                bullets.add(player.shoot(player.getPower()));
+            	if (lastShot == 0) {
+            		lastShot = shotCooldown;
+            		bullets.add(player.shoot(player.getPower()));
+            	}
                 System.out.println(player.getUserName());
             }
         }
@@ -166,6 +188,21 @@ public class MainGame extends GraphicsPane implements KeyListener, ActionListene
             	
         }
     }
+	
+	public void addScore(int sc) {
+		score += sc;
+		scoreboard.setLabel("Score: " + score);
+		if(score > 100) {
+			gameOver = true;
+		}
+		if(gameOver && !endScreen) {
+			program.add(endGame);
+		}
+	}
+	
+	public void win() {
+		
+	}
 
 
 	public void changeLevel(int level) {

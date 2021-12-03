@@ -60,8 +60,8 @@ public class Player {
         return this.health;
     }
 
-    public void setHealth(int health) {
-        this.health = health;
+    public void updateHealth(int health) {
+        this.health -= health;
     }
 
     public int getVelocity() {
