@@ -148,6 +148,7 @@ public class MainApplication extends GraphicsProgram {
 	}
 	
 	public void switchToWLPane() {
+		winLosePane.setPlayer(game.getPlayer());
 		switchToScreen(winLosePane);	
 	}
 }

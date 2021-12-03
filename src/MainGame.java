@@ -210,4 +210,9 @@ public class MainGame extends GraphicsPane implements KeyListener, ActionListene
 		// TODO Auto-generated method stub
 		this.level = level;
 	}
+
+	public Player getPlayer() {
+		// TODO Auto-generated method stub
+		return player;
+	}
 }

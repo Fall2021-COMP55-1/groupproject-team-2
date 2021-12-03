@@ -19,29 +19,50 @@ public class WLPane extends GraphicsPane {
     
     private GLabel lose;
     private GLabel win;
+    private GLabel score;
+    long playerScore;
     private GImage button;
     private GImage loseImage;
     private GImage winImage;
+    private boolean winState = false;
+    Player player;
+    
     //state of whether player lost or won
     //if lost show lost image
     //if won show won image
     
     public WLPane(MainApplication app) {
     	super();
-    	loseImage = new GImage("src/Images/lostImage.jpg");
-    	loseImage.sendToBack();
-    	program = app;
     	
-    	lose = new GLabel("YOU LOST", 300, 250);
-    	win = new GLabel("YOU WON", 300, 350);
+    	program = app;
+    	loseImage = new GImage("src/Images/lostImage.jpg");
+    	winImage = new GImage("src/Images/winImage.jpg");
+    	
+    	
+    	if (player != null && player.getHealth() > 0) {
+    		winImage.sendToBack();
+    		win = new GLabel("YOU HAVE WON", 300, 350);
+    		winState = true;
+    		win.setColor(Color.white);
+    	}
+    	else {
+    		loseImage.sendToBack();
+    		lose = new GLabel("YOU HAVE LOST", 300, 250);
+    		lose.setColor(Color.white);
+    	}
+    	
 
         button = new GImage("src/Images/continue button.png", program.getWidth()/2-59, program.getHeight()*4/5);
     }
 
     @Override
     public void showContents() {
-    	program.add(loseImage);
-        program.add(winImage);
+    	if (winState) {
+    		program.add(winImage);
+    	} 
+    	else {
+    		program.add(loseImage);
+    	}
         program.add(lose);
         program.add(win);
         program.add(button);
@@ -50,10 +71,13 @@ public class WLPane extends GraphicsPane {
 
     @Override
     public void hideContents() {
+    	program.remove(loseImage);
         program.remove(lose);
+        program.add(winImage);
         program.remove(win);
+        program.remove(score);
         program.remove(button);
-        program.remove(loseImage);
+        
     }
 
     @Override
@@ -70,5 +94,12 @@ public class WLPane extends GraphicsPane {
     	
                
     }
+
+	public void setPlayer(Player player) {
+		this.player = player;
+		score = new GLabel("Score: " + player.getScore(), 300, 360);
+		program.add(score);
+		
+	}
 
 }
