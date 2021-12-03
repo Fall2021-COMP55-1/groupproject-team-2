@@ -192,7 +192,7 @@ public class MainGame extends GraphicsPane implements KeyListener, ActionListene
 	public void addScore(int sc) {
 		score += sc;
 		scoreboard.setLabel("Score: " + score);
-		if(score > 100) {
+		if(score >= 100) {
 			gameOver = true;
 		}
 		if(gameOver && !endScreen) {
