@@ -43,6 +43,7 @@ public class MainGame extends GraphicsPane implements KeyListener, ActionListene
     private boolean lost;
 	private int level;
     private int difficulty;
+    private int FINAL_SCORE = 100;
     public MainGame(String username,MainApplication app) {
         super();
         program = app;
@@ -116,7 +117,7 @@ public class MainGame extends GraphicsPane implements KeyListener, ActionListene
         }
         if(player.getHealth() < 10 ) {
         	lost = true;
-        	program.add(//wL state);
+        	program.add(lose);
         }
         player.update();
         if(lastShot != 0) {
@@ -193,11 +194,12 @@ public class MainGame extends GraphicsPane implements KeyListener, ActionListene
 		score += sc;
 		scoreboard.setLabel("Score: " + score);
 		
-		if(score >= 100) {
+		if(score >= FINAL_SCORE) {
 			gameOver = true;
 		}
 		if(gameOver && !endScreen) {
-			program.add(//WL state);
+			program.switchToTransition();
+			FINAL_SCORE = 150;
 		}
 	}
 	

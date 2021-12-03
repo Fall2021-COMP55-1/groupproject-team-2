@@ -75,7 +75,7 @@ public class TransitionPane extends GraphicsPane {
     public void mousePressed(MouseEvent e) {
     	 GObject obj = program.getElementAt(e.getX(), e.getY());
          if (obj == button) {
-         	program.switchToMenu();
+         	program.switchToGame();
          }
          if (obj == transitionImage) {
          	program.switchToLeaderboard();
