@@ -13,7 +13,7 @@ public class EnemyPack {
 	private MainGame game;
 	 double min, max;
 	 private int y = 1;
-	 int spawn = 300; //default time
+	 int spawn = 400; //default time
 	 int lastSpawn = 0;
 	 
 	

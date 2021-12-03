@@ -116,7 +116,7 @@ public class MainGame extends GraphicsPane implements KeyListener, ActionListene
         }
         if(player.getHealth() < 10 ) {
         	lost = true;
-        	program.add(lose);
+        	program.add(//wL state);
         }
         player.update();
         if(lastShot != 0) {
@@ -192,11 +192,12 @@ public class MainGame extends GraphicsPane implements KeyListener, ActionListene
 	public void addScore(int sc) {
 		score += sc;
 		scoreboard.setLabel("Score: " + score);
+		
 		if(score >= 100) {
 			gameOver = true;
 		}
 		if(gameOver && !endScreen) {
-			program.add(endGame);
+			program.add(//WL state);
 		}
 	}
 	
