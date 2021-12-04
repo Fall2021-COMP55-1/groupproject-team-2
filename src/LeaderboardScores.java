@@ -26,7 +26,6 @@ import java.util.ArrayList;
 		   records.add(new Record(name, value));
 	   }
 
-
 	   for(int i = 0; i < records.size() - 1; i++){
 		   for(int j = i + 1; j < records.size(); j++){
 			   Record record1 = records.get(i);

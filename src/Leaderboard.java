@@ -31,7 +31,6 @@ public class Leaderboard extends GraphicsPane {
     private GImage leaderboardUsername;
     ArrayList<GLabel> scores;
     
-
     public Leaderboard(MainApplication app) {
         super();
 
