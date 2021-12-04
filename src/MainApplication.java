@@ -115,8 +115,8 @@ public class MainApplication extends GraphicsProgram {
 		leaderboard = new Leaderboard(this);
 		settings = new Settings(this);
 		transition = new TransitionPane(this, player);
-		winLosePane = new WLPane(this);
 		game = new MainGame(menu.getUsername(), this);
+		winLosePane = new WLPane(this, game);
 		setupInteractions();
 		switchToWelcome();
 	}
