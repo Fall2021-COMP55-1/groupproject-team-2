@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import javax.swing.JTextField;
 import acm.graphics.GImage;
@@ -19,6 +20,7 @@ public class Leaderboard extends GraphicsPane {
     private GImage title;
     private GImage button;
     private GImage bButton;
+    private GImage scoreImage;
     private GLabel text;
     private GLine textline;
     private String username = " ";
@@ -26,7 +28,8 @@ public class Leaderboard extends GraphicsPane {
     private GImage leaderboardImage;
     private ArrayList <Record> records;
     private GLabel leaderboardScores;
-    
+    private GImage leaderboardUsername;
+    ArrayList<GLabel> scores;
     
 
     public Leaderboard(MainApplication app) {
@@ -41,15 +44,25 @@ public class Leaderboard extends GraphicsPane {
         leaderboardImage.sendToFront();
         bButton = new GImage("src/Images/bButton.png", 265, 478);
         bButton.sendToFront();
-        text = new GLabel(username, 800/2-150/2, 600*2/3-50);
-        
+        scores = new ArrayList <GLabel>();
+        String Leaderboardstring = " ";
         leaderboardScores = new GLabel("src/Scores.txt", 200, 0);
         leaderboardScores.sendToFront();
-        
+        scoreImage = new GImage("src/Images/Score.png", 410, 30);
+        scoreImage.sendToFront();
+        leaderboardUsername = new GImage("src/Images/leaderboardUsername.png", 175, 30);
+        leaderboardUsername.sendToFront();
         LeaderboardScores ls = new LeaderboardScores(program);
         records = ls.getScores();
+        int y = 300*2/3-50;
+        Iterator<Record> iter = records.iterator();
+        while (iter.hasNext()) {
+        	Record temp = iter.next();
+        	String leaderboardstring = temp.getName() + "                                                                           " + temp.getValue() + "";
         
-        //Iterator<Record>;
+        	scores.add( new GLabel(leaderboardstring, 600/2-150/2, y));
+        	y += 80;
+        }
         
     }
 
@@ -59,8 +72,13 @@ public class Leaderboard extends GraphicsPane {
         program.add(bButton);
         program.add(leaderboard);
         program.add(leaderboardImage);
-        
+        program.add(scoreImage);
+        program.add(leaderboardUsername);
         program.add(leaderboardScores);
+        for(GLabel l: scores) {
+        	program.add(l);
+        	
+        }
     }
 
     @Override
@@ -68,9 +86,10 @@ public class Leaderboard extends GraphicsPane {
         program.remove(background);
         program.remove(bButton);
         program.remove(leaderboard);
-        program.remove(leaderboardImage);
-        
+        program.remove(scoreImage);
+        program.remove(leaderboardImage);        
         program.remove(leaderboardScores);
+        program.remove(leaderboardUsername);
     }
 
     @Override

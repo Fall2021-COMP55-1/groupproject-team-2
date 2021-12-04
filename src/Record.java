@@ -1,4 +1,3 @@
-
 class Record{
 	String name;
 	int value;

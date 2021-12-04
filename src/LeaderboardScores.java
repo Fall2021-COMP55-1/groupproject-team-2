@@ -2,13 +2,13 @@ import java.util.Scanner;
 import java.io.File;
 import java.util.ArrayList;
 
-public class LeaderboardScores extends GraphicsPane{
+	public class LeaderboardScores extends GraphicsPane{
 
-private ArrayList<Record> records;
+		private ArrayList<Record> records;
 
-public LeaderboardScores(MainApplication app) {
-	super();
-   try{
+		public LeaderboardScores(MainApplication app) {
+			super();
+			try{
    
 	   String filename = "src/Scores.txt";
    
@@ -25,7 +25,7 @@ public LeaderboardScores(MainApplication app) {
 
 		   records.add(new Record(name, value));
 	   }
-  
+
 
 	   for(int i = 0; i < records.size() - 1; i++){
 		   for(int j = i + 1; j < records.size(); j++){
@@ -59,22 +59,22 @@ public LeaderboardScores(MainApplication app) {
    }
 
 
-@Override
-public void showContents() {
-	// TODO Auto-generated method stub
+   @Override
+	public void showContents() {
+	   // TODO Auto-generated method stub
 	
-}
+   }
 
 
-@Override
-public void hideContents() {
-	// TODO Auto-generated method stub
+   @Override
+   public void hideContents() {
+	   // TODO Auto-generated method stub
 	
-}
+   }
 
-public ArrayList <Record> getScores() {
-	return records;
+   public ArrayList <Record> getScores() {
+	   return records;
 	
-}
+   }
 
-}
+	}
