@@ -31,9 +31,10 @@ public class WLPane extends GraphicsPane {
     //if lost show lost image
     //if won show won image
     
-    public WLPane(MainApplication app) {
+    public WLPane(MainApplication app, MainGame game) {
     	super();
-    	
+    	player = game.getPlayer();
+    	System.out.println(player.getHealth());
     	program = app;
     	loseImage = new GImage("src/Images/lostImage.jpg");
     	winImage = new GImage("src/Images/winImage.jpg");

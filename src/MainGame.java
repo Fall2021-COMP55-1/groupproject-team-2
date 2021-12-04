@@ -63,6 +63,7 @@ public class MainGame extends GraphicsPane implements KeyListener, ActionListene
     	lost = false;
     	lose = new GImage("src/Images/lose.png",0,0);
     	health = new GLabel("Health: " + player.getHealth(),720,540);
+    	b = new Boss(program, this);
     }
     
     public void updatePlayer() {
@@ -198,13 +199,15 @@ public class MainGame extends GraphicsPane implements KeyListener, ActionListene
 			gameOver = true;
 		}
 		if(gameOver && !endScreen) {
-			program.switchToTransition();
+			program.switchToWLPane();
+			player.setScore(score);
 			FINAL_SCORE = 150;
+			
 		}
 	}
 	
-	public void win() {
-		
+	public boolean isLost() {
+		return gameOver && score != 100;
 	}
 
 
