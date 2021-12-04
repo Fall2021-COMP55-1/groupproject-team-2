@@ -206,8 +206,8 @@ public class MainGame extends GraphicsPane implements KeyListener, ActionListene
 		}
 	}
 	
-	public void win() {
-		
+	public boolean isLost() {
+		return gameOver && score != 100;
 	}
 
 

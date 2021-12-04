@@ -34,6 +34,7 @@ public class WLPane extends GraphicsPane {
     public WLPane(MainApplication app, MainGame game) {
     	super();
     	player = game.getPlayer();
+    	System.out.println(player.getHealth());
     	program = app;
     	loseImage = new GImage("src/Images/lostImage.jpg");
     	winImage = new GImage("src/Images/winImage.jpg");
@@ -46,7 +47,6 @@ public class WLPane extends GraphicsPane {
     		win.setColor(Color.white);
     	}
     	else {
-    		System.out.println(player.getHealth());
     		loseImage.sendToBack();
     		lose = new GLabel("YOU HAVE LOST", 300, 250);
     		lose.setColor(Color.white);
