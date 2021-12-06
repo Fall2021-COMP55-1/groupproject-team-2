@@ -42,7 +42,7 @@ public class MainGame extends GraphicsPane implements KeyListener, ActionListene
     private boolean endScreen;
     private boolean lost;
 	private int level;
-    private int difficulty;
+    private int difficulty = 1;
     private int FINAL_SCORE = 100;
     public MainGame(String username,MainApplication app) {
         super();
@@ -200,7 +200,7 @@ public class MainGame extends GraphicsPane implements KeyListener, ActionListene
 		score += sc;
 		scoreboard.setLabel("Score: " + score);
 		
-		if(score >= FINAL_SCORE) {
+		if(score >= (FINAL_SCORE * difficulty * 2)) {
 			gameOver = true;
 		}
 		if(gameOver && !endScreen) {
@@ -215,7 +215,9 @@ public class MainGame extends GraphicsPane implements KeyListener, ActionListene
 	public boolean isLost() {
 		return gameOver && score != 100;
 	}
-
+	public void setDifficulty(int d) {
+		difficulty = d;
+	}
 
 	public void changeLevel(int level) {
 		// TODO Auto-generated method stub

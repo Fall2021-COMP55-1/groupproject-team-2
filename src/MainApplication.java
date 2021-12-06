@@ -162,4 +162,9 @@ public class MainApplication extends GraphicsProgram {
 		System.out.println(game.getPlayer());
 		switchToScreen(losePane);	
 	}
+
+	public void setDifficulty(int i) {
+		// TODO Auto-generated method stub
+		game.setDifficulty(i);
+	}
 }

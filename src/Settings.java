@@ -49,12 +49,16 @@ public class Settings extends GraphicsPane {
     private GImage offText;
     private GImage onText;
 	public GraphicsPane last;
+	private SimpleAudioPlayer ap;
+	
+	
 
     public Settings(MainApplication app) {
         super();
         String filename = "src/Images/cloud.gif";
         background = new GImage(filename, 0,0);
         program = app;  
+        
         settingsTitle = new GImage("src/Images/settings Title.png", -50, 0);
         settingsTitle.sendToFront();
         difficultyLevelBox = new GImage("src/Images/difficultyLevelBox.png", -73, 80);
@@ -92,7 +96,7 @@ public class Settings extends GraphicsPane {
         temp4 = new GRect(479, 229, 30, 30);
         temp4.setFillColor(Color.RED);
         temp4.sendToFront();
-        temp4.setFilled(true);
+        temp3.setFilled(true);
         sBox2 = new GImage("src/Images/selectionBox.png", 450, 135);
         sBox3 = new GImage("src/Images/selectionBox.png", 560, 135);
         sBox4 = new GImage("src/Images/selectionBox.png", 340, 220);
@@ -107,16 +111,16 @@ public class Settings extends GraphicsPane {
         onText.sendToFront();
         offText = new GImage("src/Images/offText.png", 345, 135);
         offText.sendToFront();
-        
-        /*
+  
         try {
-   		 mp = new MusicPlayer();
-   		 System.out.println("Music Player created");
-	   	}
-	   	catch(Exception ex) {
-	   		System.out.println("Error with playing music");
-	   	}*/
-	   	
+            ap = new SimpleAudioPlayer();
+        } catch (UnsupportedAudioFileException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (LineUnavailableException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -182,9 +186,7 @@ public class Settings extends GraphicsPane {
     @Override
     public void mousePressed(MouseEvent e) {
         GObject obj = program.getElementAt(e.getX(), e.getY());
-        
-        
-        
+  
         if (obj == bButton) {
         	program.switchToMenu();
         }
@@ -195,37 +197,36 @@ public class Settings extends GraphicsPane {
         	temp.setFilled(true);
         	temp1.setFilled(false);
         	temp2.setFilled(false);
+        	program.setDifficulty(1);
         }
     	if (obj == temp1) {
     		temp.setFilled(false);
         	temp1.setFilled(true);
         	temp2.setFilled(false);
+        	program.setDifficulty(2);
             }
     	if (obj == temp2) {
     		temp.setFilled(false);
         	temp1.setFilled(false);
         	temp2.setFilled(true);
+        	program.setDifficulty(3);
             } 
     	if (obj == temp3) {
     		temp3.setFilled(true);
-        	temp4.setFilled(false);	
-        	//mp.play();
+        	temp4.setFilled(false);
+        	ap.play();
     	}
     	if (obj == temp4) {
     		temp4.setFilled(true);
         	temp3.setFilled(false);
-        	/*try {
-				mp.stop();
-			} catch (Exception ex) {
-				// TODO Auto-generated catch block
-				ex.printStackTrace();
-			}*/
+        	ap.pause();
     	}
     }
 
     public void actionPerformed(ActionEvent e) {
 
     }
+
 
     public void keyPressed(KeyEvent e) {
     	if(e.getKeyChar() == KeyEvent.VK_ESCAPE) {
