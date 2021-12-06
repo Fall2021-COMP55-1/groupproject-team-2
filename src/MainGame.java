@@ -125,10 +125,13 @@ public class MainGame extends GraphicsPane implements KeyListener, ActionListene
         if(lastShot != 0) {
         	lastShot -= 10;
         }
+        //some edits made, but eclipse wont read it for pushing
         Iterator<Projectile> iter = bullets.iterator();
         while(iter.hasNext()) {
         	Projectile temp = iter.next();
         	temp.update();
+
+
         	if(enemy.checkCollision(temp.getImage().getBounds())) {	
         		temp.hide();
         		iter.remove();
@@ -174,6 +177,7 @@ public class MainGame extends GraphicsPane implements KeyListener, ActionListene
             	if (lastShot == 0) {
             		lastShot = shotCooldown;
             		bullets.add(player.shoot());
+            		System.out.println(player.getPower());
             	}
                 System.out.println(player.getUserName());
             }

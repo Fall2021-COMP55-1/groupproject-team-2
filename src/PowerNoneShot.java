@@ -46,4 +46,6 @@ public class PowerNoneShot extends Projectile implements ActionListener {
     public PowerType shoot() {
         return pt;
     }
+
+    //removed some prints for less lag
 }

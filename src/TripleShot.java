@@ -37,26 +37,15 @@ public class TripleShot extends Projectile implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(yPos < 0) {
             timer.stop();
-            System.out.println("PS Final coords: " + xPos + ", " + yPos);
+            
         }
-
-            ps.setLocation(xPos+18, yPos);
-            ds.setLocation(xPos, yPos);
-            ts.setLocation(xPos-18, yPos--);
-            yPos -= 1;
-
+            ship.setLocation(xPos, yPos--);
+            
     }
 
-    public void remove() {
-        program.remove(ps);
-    }
 
     public PowerType shoot() {
-        for(int i = 0; i < 100; i++) {
-
-            ps.setLocation(xPos, yPos--);
-            System.out.println("Moving bullet");
-        }
         return pt;
     }
+    //removed some prints for less lag
 }
