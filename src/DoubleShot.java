@@ -12,7 +12,7 @@ public class DoubleShot extends Projectile implements ActionListener {
     private PowerType pt;
     private Timer timer;
     public DoubleShot(PowerType pt, double d, double e, MainApplication ma) {
-        super(d, e);
+    	super(ma, d+48, e);
         program = ma;
         this.pt = pt;
         timer = new Timer(1, this);

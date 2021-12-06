@@ -15,7 +15,8 @@ public class MainApplication extends GraphicsProgram {
 	private Leaderboard leaderboard;
 	private TransitionPane transition;
 	private MainGame game;
-	private WLPane winLosePane;
+	private WinPane winPane;
+	private LosePane losePane;
 	Player player;
 	
 	/* Method: setupInteractions
@@ -116,7 +117,8 @@ public class MainApplication extends GraphicsProgram {
 		settings = new Settings(this);
 		transition = new TransitionPane(this, player);
 		game = new MainGame(menu.getUsername(), this);
-		winLosePane = new WLPane(this, game);
+		winPane = new WinPane(this, game);
+		losePane = new LosePane(this, game);
 		setupInteractions();
 		switchToWelcome();
 	}
@@ -147,8 +149,17 @@ public class MainApplication extends GraphicsProgram {
 		switchToScreen(transition);	
 	}
 	
-	public void switchToWLPane() {
-		winLosePane.setPlayer(game.getPlayer());
-		switchToScreen(winLosePane);	
+	public void switchToWin() {
+		winPane.setScore(game.getScore());
+		winPane.setPlayer(game.getPlayer());
+		System.out.println(game.getPlayer());
+		switchToScreen(winPane);	
+	}
+	
+	public void switchToLose() {
+		losePane.setScore(game.getScore());
+		losePane.setPlayer(game.getPlayer());
+		System.out.println(game.getPlayer());
+		switchToScreen(losePane);	
 	}
 }

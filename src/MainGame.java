@@ -118,8 +118,9 @@ public class MainGame extends GraphicsPane implements KeyListener, ActionListene
         }
         if(player.getHealth() < 10 ) {
         	lost = true;
-        	program.switchToWLPane();
+        	program.switchToLose();
         }
+        
         player.update();
         if(lastShot != 0) {
         	lastShot -= 10;
@@ -172,7 +173,7 @@ public class MainGame extends GraphicsPane implements KeyListener, ActionListene
             if(key == KeyEvent.VK_SPACE) {
             	if (lastShot == 0) {
             		lastShot = shotCooldown;
-            		bullets.add(player.shoot(player.getPower()));
+            		bullets.add(player.shoot());
             	}
                 System.out.println(player.getUserName());
             }
@@ -199,8 +200,9 @@ public class MainGame extends GraphicsPane implements KeyListener, ActionListene
 			gameOver = true;
 		}
 		if(gameOver && !endScreen) {
-			program.switchToWLPane();
+			program.switchToWin();
 			player.setScore(score);
+			System.out.println(player.getScore());
 			FINAL_SCORE = 150;
 			
 		}
@@ -219,5 +221,9 @@ public class MainGame extends GraphicsPane implements KeyListener, ActionListene
 	public Player getPlayer() {
 		// TODO Auto-generated method stub
 		return player;
+	}
+	
+	public long getScore() {
+		return score;
 	}
 }

@@ -19,8 +19,8 @@ public class MenuPane extends GraphicsPane {
     private GImage title;
     private GImage button;
     private GImage transition;
-    private GImage winLose1;
-    private GImage winLose2;
+    private GImage win;
+    private GImage lose;
     private GRect textbox;
     private GLabel text;
     private GLine textline;
@@ -33,7 +33,8 @@ public class MenuPane extends GraphicsPane {
         super();
     	
         transition = new GImage("src/Images/player.png", 400, 300);
-        winLose1 = new GImage("src/Images/player.png", 400, 300);
+        win = new GImage("src/Images/player.png", 400, 300);
+        lose = new GImage("src/Images/player.png", 400, 300);
         String filename = "src/Images/cloud.gif";
         background = new GImage(filename, 0,0);
         program = app;
@@ -60,7 +61,7 @@ public class MenuPane extends GraphicsPane {
         program.add(settings);
         program.add(leaderboard);
         program.add(transition);
-        program.add(winLose1);
+        program.add(win);
     }
 
     @Override
@@ -72,7 +73,7 @@ public class MenuPane extends GraphicsPane {
         program.remove(settings);
         program.remove(leaderboard);
         program.remove(transition);
-        program.remove(winLose1);
+        program.remove(win);
     }
 
     @Override
@@ -90,8 +91,11 @@ public class MenuPane extends GraphicsPane {
         if (obj == transition) {
         	program.switchToTransition();
         }
-        if (obj == winLose1) {
-        	program.switchToWLPane();
+        if (obj == win) {
+        	program.switchToWin();
+        }
+        if (obj == lose) {
+        	program.switchToLose();
         }
         if(obj == textbox) {
 

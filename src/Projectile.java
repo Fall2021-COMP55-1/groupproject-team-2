@@ -58,7 +58,7 @@ public class Projectile implements ActionListener {
     public void remove() {
     	program.remove(ship);
     	travelling = false;
-    	System.out.println("PS Final coords: " + xPos + ", " + yPos);
+    	
     }
 
     public void hide() {
@@ -92,10 +92,10 @@ public class Projectile implements ActionListener {
 		// TODO Auto-generated method stub
         if(yPos < 0 || !travelling) {
             timer.stop();
-            System.out.println("PS Final coords: " + xPos + ", " + yPos);
+           
         } else if(!paused) {
             ship.setLocation(xPos, yPos--);
-            System.out.println("PS Coords: " + xPos);
+            
         }
 	}
 }

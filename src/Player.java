@@ -35,18 +35,35 @@ public class Player {
         y = ship.getY();
     }
 
-    public Projectile shoot(PowerType p){
+    public Projectile shoot(){
     	System.out.println("Shooting");
         Projectile shot = null; 
-        if(p == PowerType.NONE || p == null || p == PowerType.POWERSHOT) {
+        Random ran = new Random();
+        int randx = ran.nextInt();
+        //if(p == PowerType.NONE || p == null || p == PowerType.POWERSHOT) {
+        if (randx % 4 == 0 || randx % 4 == 1) {
+        	int randy = ran.nextInt() % 2;
+        	PowerType p = null;
+        	if (randy == 0) {
+        		p = PowerType.NONE;
+        	}
+        	else {
+        		p = PowerType.POWERSHOT;
+        	}
         	//Returning Power or None Shot Class
         	shot = new PowerNoneShot(p, ship.getX()-ship.getWidth()/2, ship.getY()-ship.getHeight() , program);
-        	p = PowerType.NONE;
-        } else if(p == PowerType.DOUBLESHOT) {
+        	
+        } //else if(p == PowerType.DOUBLESHOT) {
         	//Returning DoubleShotClass
+        else if (randx % 4 == 2) { 
+        	PowerType p  = PowerType.DOUBLESHOT;
         	shot = new DoubleShot(p, ship.getX() + ship.getWidth()/2 - 32, ship.getY() - 2*ship.getHeight() - ship.getHeight() - 5, program);
-        } else if(p == PowerType.TRIPLESHOT) {
+        	
+        } //else if(p == PowerType.TRIPLESHOT) {
+        
+    	else if (randx % 4 == 3) {
         	//Returning TripleShot Class
+    		PowerType p  = PowerType.DOUBLESHOT;
         	shot = new TripleShot(p, ship.getX() + ship.getWidth()/2 - 32, ship.getY() - 2*ship.getHeight() - ship.getHeight() - 5, program);
         }
         return shot;
@@ -211,7 +228,11 @@ public class Player {
 		// TODO Auto-generated method stub
 		return username;
 	}
-
+	
+	public String toString() {
+		return username + " " + score;
+	}
+	
 	public long getScore() {
 		// TODO Auto-generated method stub
 		return score;

@@ -36,10 +36,10 @@ public class PowerNoneShot extends Projectile implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(yPos < 0) {
             timer.stop();
-            System.out.println("PS Final coords: " + xPos + ", " + yPos);
+            
         }
             ship.setLocation(xPos, yPos--);
-            System.out.println("PS Coords: " + xPos);
+            
     }
 
 

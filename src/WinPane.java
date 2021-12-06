@@ -11,46 +11,42 @@ import acm.graphics.GLine;
 import acm.graphics.GObject;
 
 
-public class WLPane extends GraphicsPane {
+public class WinPane extends GraphicsPane {
 
     // you will use program to get access to all of the GraphicsProgram calls
     private MainApplication program; 
 
     
-    private GLabel lose;
+    //private GLabel lose;
     private GLabel win;
     private GLabel score;
-    long playerScore;
+    private long playerScore;
     private GImage button;
-    private GImage loseImage;
+    //private GImage loseImage;
     private GImage winImage;
-    private boolean winState = false;
+    
+    //private boolean winState = false;
     Player player;
     
     //state of whether player lost or won
     //if lost show lost image
     //if won show won image
     
-    public WLPane(MainApplication app, MainGame game) {
+    public WinPane(MainApplication app, MainGame game) {
     	super();
     	player = game.getPlayer();
     	System.out.println(player.getHealth());
     	program = app;
-    	loseImage = new GImage("src/Images/lostImage.jpg");
     	winImage = new GImage("src/Images/winImage.jpg");
     	
     	
     	if (player != null && player.getHealth() > 0) {
     		winImage.sendToBack();
-    		win = new GLabel("YOU HAVE WON", 300, 350);
-    		winState = true;
+    		win = new GLabel("YOU HAVE WON! :)", 400, 300);
+    		//winState = true;
     		win.setColor(Color.white);
     	}
-    	else {
-    		loseImage.sendToBack();
-    		lose = new GLabel("YOU HAVE LOST", 300, 250);
-    		lose.setColor(Color.white);
-    	}
+    	
     	
 
         button = new GImage("src/Images/continue button.png", program.getWidth()/2-59, program.getHeight()*4/5);
@@ -58,25 +54,15 @@ public class WLPane extends GraphicsPane {
 
     @Override
     public void showContents() {
-    	if (winState) {
-    		program.add(winImage);
-    		program.add(win);
-    		program.add(score);
-    	} 
-    	else {
-    		program.add(loseImage);
-    		program.add(lose);
-    		program.add(score);
-    	}
-        
-        program.add(button);
+    	program.add(winImage);
+    	program.add(win);
+    	program.add(score);
+   	  	program.add(button);
         
     }
 
     @Override
     public void hideContents() {
-    	program.remove(loseImage);
-        program.remove(lose);
         program.add(winImage);
         program.remove(win);
         program.remove(score);
@@ -86,10 +72,14 @@ public class WLPane extends GraphicsPane {
 
     @Override
     public void mousePressed(MouseEvent e) {
-        
+    	GObject obj = program.getElementAt(e.getX(), e.getY());
+        if (obj == button) {
+            program.switchToMenu();
+        }
     }
 
     public void actionPerformed(ActionEvent e) {
+    	
 
     }
     
@@ -101,10 +91,15 @@ public class WLPane extends GraphicsPane {
 
 	public void setPlayer(Player player) {
 		this.player = player;
-		score = new GLabel("Score: " + player.getScore(), 300, 355);
+		score = new GLabel("Score: " + playerScore, 400, 355);
 		score.setColor(Color.white);
 		
 		
+	}
+
+	public void setScore(long score2) {
+		// TODO Auto-generated method stub
+		playerScore = score2;
 	}
 
 }
